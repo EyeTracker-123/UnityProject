@@ -1,0 +1,47 @@
+```mermaid
+flowchart
+a{{acter}}
+b(usecase)
+```
+# ゲーム全体のユースケース図
+```mermaid
+flowchart LR
+
+p{{プレイヤー}}
+
+p0(座標移動)
+p1(視点移動)
+p2(目の開閉)
+p3(アクション)
+
+pp0(音が聞こえる)
+pp1(エネミーに捕まる)
+
+pp800(ゲームオーバー)
+
+subgraph コントローラー
+p0
+p1
+p3
+end
+
+subgraph アイトラッカー
+p2
+end
+
+p---p0
+p---p1
+p---p2
+p---p3
+p---pp1
+
+p2---pp0
+pp1---pp800
+
+
+e{{エネミー}}
+
+
+
+
+```
