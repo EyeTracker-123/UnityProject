@@ -7,6 +7,8 @@ public class player : MonoBehaviour
 {
     Vector3 _velocity;
     public float move_speed;
+    public float stamina = 1;
+    public bool dashflag = false;
     private void Awake()
     {
         // Player InputからInputActionを取得します
@@ -24,6 +26,19 @@ public class player : MonoBehaviour
        // rb.velocity = _velocity * move_speed
 
         gameObject.transform.position += _velocity * move_speed;
+
+        //スタミナが1.0より高くなった時に、1に戻す処理
+        if(stamina > 1)
+        {
+            stamina = 1;
+            dashflag = false;
+        }
+        //3割以上のスタミナを回復させる
+        if(stamina >= 0.3 && dashflag)
+        {
+            stamina += 0.003f;
+        }
+        Debug.Log("st="+stamina+" df="+dashflag);
     }
     
     void OnMove(InputValue value)
@@ -59,6 +74,7 @@ public class player : MonoBehaviour
         //Debug.Log("Hold canceled");
         StopAllCoroutines();
         move_speed = 0.01f;
+        //dashflag = false;
     }
 
     private IEnumerator HoldRoutine()
@@ -66,9 +82,29 @@ public class player : MonoBehaviour
         while (true)
         {
             // 押されている間に行いたい処理
-            Debug.Log("Holding...");
-            move_speed = 0.02f;
-            yield return null;
+            //Debug.Log("Holding...");
+            if(stamina > 0)
+            {
+                move_speed = 0.02f;
+                stamina -= 0.003f;
+                yield return null;
+
+            }
+            else
+            {
+                // yield return new WaitForSeconds(2);
+                move_speed = 0.01f;
+
+                dashflag = true;
+
+                //スタミナを3割まで徐々に回復させる
+                while (stamina < 0.3f)
+                {
+                    stamina += 0.003f;
+                    yield return null;
+                }
+            }
+            
         }
     }
 }
