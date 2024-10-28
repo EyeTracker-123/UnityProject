@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class player : MonoBehaviour
 {
     Vector3 _velocity;
+    Vector3 _camera;
     public float move_speed;
     public float stamina = 1;
     public bool dashflag = false;
@@ -20,9 +23,31 @@ public class player : MonoBehaviour
         holdAction.canceled += OnHoldCanceled;
     }
 
+    public Camera cam;
+    public Transform target;  
+    private Vector3 offset = new Vector3(0,0,0);
+    private float camera_x;
+    private float camera_y;
+    private float xRotation;
+    Vector3 _came = new Vector3(0, 0, 0);
+
+    void LateUpdate()
+    {
+        // カメラをターゲットに追従させる
+        cam.transform.position = target.position + offset;
+    }
+    // 後で消す public float x = 0.01f;
     void Update()
     {
-        gameObject.transform.position += _velocity * move_speed;
+        gameObject.transform.localPosition += _velocity * move_speed;
+        
+        _came.x += (_camera.x * 0.1f) * -1;
+        _came.y += _camera.y * 0.1f;
+       //_came.x = Mathf.Clamp(_came.x, -90, 90);
+       // _came.y = Mathf.Clamp(_came.y, -90, 90);
+        cam.transform.localRotation = Quaternion.Euler(_came);
+        gameObject.transform.localRotation = Quaternion.Euler(0,_came.y,0);
+       // target.Rotate(Vector3.up * camera_x);
 
         //スタミナが1.0より高くなった時に、1に戻す処理
         if (dashflag == false)
@@ -43,6 +68,16 @@ public class player : MonoBehaviour
     {
         var axis = value.Get<Vector2>();
         _velocity = new Vector3(axis.x,0, axis.y);
+    }
+    void OnLook(InputValue value)
+    {
+        var ori = value.Get<Vector2>();
+        _camera = new Vector3(ori.y, ori.x, 0);
+        //camera_x = ori.x;
+       //amera_y = ori.y;
+        //xRotation -= camera_y;
+        //xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+       
     }
     
     private InputAction holdAction;
