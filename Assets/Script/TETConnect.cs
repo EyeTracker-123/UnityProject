@@ -54,6 +54,7 @@ public class TETConnect : MonoBehaviour
     public class frame
     {
         public avg avg = null;
+        //一番ありそう
         public bool fix = false;
         public lefteye lefteye = null;
         public raw raw = null;
