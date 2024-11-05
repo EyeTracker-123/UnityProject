@@ -602,7 +602,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1290216735
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -733,6 +733,7 @@ MonoBehaviour:
   dashflag: 0
   cam: {fileID: 330585545}
   target: {fileID: 1290216738}
+  _came: {x: 0, y: 0, z: 0}
 --- !u!114 &1290216741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,6 +778,7 @@ GameObject:
   - component: {fileID: 1328836210}
   - component: {fileID: 1328836209}
   - component: {fileID: 1328836208}
+  - component: {fileID: 1328836213}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Untagged
@@ -898,6 +900,18 @@ Transform:
   - {fileID: 782319689}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1328836213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328836207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a7a55748f676b34f98bc1b34366f2b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1942445218
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,11 +14,11 @@ public class player : MonoBehaviour
     public bool dashflag = false;
     private void Awake()
     {
-        // Player Input‚©‚çInputAction‚ğæ“¾‚µ‚Ü‚·
+        // Player Inputï¿½ï¿½ï¿½ï¿½InputActionï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½Ü‚ï¿½
         var playerInput = GetComponent<PlayerInput>();
         holdAction = playerInput.actions["Run"];
 
-        // ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ên‚ß‚½‚Æ—£‚³‚ê‚½‚ÉƒCƒxƒ“ƒg‚ğ“o˜^‚µ‚Ü‚·
+        // ï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ß‚ï¿½ï¿½ï¿½ï¿½Æ—ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½ÉƒCï¿½xï¿½ï¿½ï¿½gï¿½ï¿½oï¿½^ï¿½ï¿½ï¿½Ü‚ï¿½
         holdAction.started += OnHoldStarted;
         holdAction.canceled += OnHoldCanceled;
     }
@@ -29,14 +29,14 @@ public class player : MonoBehaviour
     private float camera_x;
     private float camera_y;
     private float xRotation;
-    Vector3 _came = new Vector3(0, 0, 0);
+    public Vector3 _came = new Vector3(0, 0, 0);
 
     void LateUpdate()
     {
-        // ƒJƒƒ‰‚ğƒ^[ƒQƒbƒg‚É’Ç]‚³‚¹‚é
+        // ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½É’Ç]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         cam.transform.position = target.position + offset;
     }
-    // Œã‚ÅÁ‚· public float x = 0.01f;
+    // ï¿½ï¿½Åï¿½ï¿½ï¿½ public float x = 0.01f;
     void Update()
     {
         gameObject.transform.localPosition += _velocity * move_speed;
@@ -45,11 +45,12 @@ public class player : MonoBehaviour
         _came.y += _camera.y * 0.1f;
        //_came.x = Mathf.Clamp(_came.x, -90, 90);
        // _came.y = Mathf.Clamp(_came.y, -90, 90);
-        cam.transform.localRotation = Quaternion.Euler(_came);
-        gameObject.transform.localRotation = Quaternion.Euler(0,_came.y,0);
+        cam.transform.rotation = Quaternion.Euler(_came);
+        gameObject.transform.rotation = Quaternion.Euler(0,_came.y,0);
+        if(Input.GetKeyDown(KeyCode.M))Debug.Log(cam.transform.rotation.y);
        // target.Rotate(Vector3.up * camera_x);
 
-        //ƒXƒ^ƒ~ƒi‚ª1.0‚æ‚è‚‚­‚È‚Á‚½‚ÉA1‚É–ß‚·ˆ—
+        //ï¿½Xï¿½^ï¿½~ï¿½iï¿½ï¿½1.0ï¿½ï¿½è‚ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÉA1ï¿½É–ß‚ï¿½ï¿½ï¿½ï¿½ï¿½
         if (dashflag == false)
         {
             if (stamina == 1) return;
@@ -84,21 +85,21 @@ public class player : MonoBehaviour
 
     private void OnDestroy()
     {
-        // ƒCƒxƒ“ƒg‚Ì‰ğœ
+        // ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½Ì‰ï¿½ï¿½ï¿½
         holdAction.started -= OnHoldStarted;
         holdAction.canceled -= OnHoldCanceled;
     }
 
     private void OnHoldStarted(InputAction.CallbackContext context)
     {
-        // ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ên‚ß‚½‚çÀs
+        // ï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ß‚ï¿½ï¿½ï¿½ï¿½ï¿½s
         
         StartCoroutine(HoldRoutine());
     }
 
     private void OnHoldCanceled(InputAction.CallbackContext context)
     {
-        // ƒ{ƒ^ƒ“‚ª—£‚³‚ê‚½‚ç’â~
+        // ï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½~
         
         StopAllCoroutines();
         move_speed = 0.01f;
@@ -111,7 +112,7 @@ public class player : MonoBehaviour
         {            
             if(stamina > 0)
             {
-                //ƒXƒ^ƒ~ƒi‚ğÁ”ï‚µ‚È‚ª‚çˆÚ“®‘¬“x‚ğã‚°‚é
+                //ï¿½Xï¿½^ï¿½~ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï‚µï¿½È‚ï¿½ï¿½ï¿½Ú“ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ã‚°ï¿½ï¿½
                 move_speed = 0.02f;
                 stamina -= 0.003f;
                 dashflag = true;
@@ -120,7 +121,7 @@ public class player : MonoBehaviour
             }
             else
             {
-                //ƒXƒ^ƒ~ƒi‚ª0–¢–‚É‚È‚é‚Ì‚ğ‘j~‚µAˆÚ“®‘¬“x‚ğ–ß‚·
+                //ï¿½Xï¿½^ï¿½~ï¿½iï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½ï¿½É‚È‚ï¿½Ì‚ï¿½jï¿½~ï¿½ï¿½ï¿½Aï¿½Ú“ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ß‚ï¿½
                 move_speed = 0.01f;
                 stamina = 0;
                 yield return null;
