@@ -24,10 +24,15 @@ public class player : MonoBehaviour
     }
 
     public Camera cam;
+    public float cameraSpeed = 0.1f;
     public Transform target;  
     private Vector3 offset = new Vector3(0,0,0);
     private float camera_x;
     private float camera_y;
+
+    Vector3 cam_forward = new Vector3(0, 0, 0);
+    Vector3 cam_right = new Vector3(0, 0, 0);
+
     private float xRotation;
     public Vector3 _came = new Vector3(0, 0, 0);
 
@@ -39,15 +44,25 @@ public class player : MonoBehaviour
     // ��ŏ��� public float x = 0.01f;
     void Update()
     {
-        gameObject.transform.localPosition += _velocity * move_speed;
+        //����ŏ�������
+        //gameObject.transform.localPosition += _velocity * move_speed;
         
-        _came.x += (_camera.x * 0.1f) * -1;
-        _came.y += _camera.y * 0.1f;
-       //_came.x = Mathf.Clamp(_came.x, -90, 90);
-       // _came.y = Mathf.Clamp(_came.y, -90, 90);
-        cam.transform.rotation = Quaternion.Euler(_came);
-        gameObject.transform.rotation = Quaternion.Euler(0,_came.y,0);
-        if(Input.GetKeyDown(KeyCode.M))Debug.Log(cam.transform.rotation.y);
+
+        _came.x += (_camera.x * cameraSpeed) * -1;
+        _came.y += _camera.y * cameraSpeed;
+
+        cam_forward = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z).normalized;
+        cam_right = new Vector3(cam.transform.right.x, 0, cam.transform.right.z).normalized;
+
+        gameObject.transform.localPosition += (cam_right * _velocity.x + cam_forward * _velocity.z) * move_speed;
+
+        //����U�ۗ�
+        //_came.x = Mathf.Clamp(_came.x, -90, 90);
+        // _came.y = Mathf.Clamp(_came.y, -90, 90);
+
+        cam.transform.localRotation = Quaternion.Euler(_came);
+        gameObject.transform.localRotation = Quaternion.Euler(0,_came.y,0);
+
        // target.Rotate(Vector3.up * camera_x);
 
         //�X�^�~�i��1.0��荂���Ȃ������ɁA1�ɖ߂�����
