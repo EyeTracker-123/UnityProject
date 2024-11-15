@@ -4,20 +4,13 @@ using UnityEngine;
 
 public class enemy : MonoBehaviour
 {
-    public GameObject visibility;
-    private CapsuleCollider cc;
-    // Start is called before the first frame update
+    // あとで消す public GameObject visibility;
+    //private CapsuleCollider cc;
     void Awake()
     {
-        cc = visibility.GetComponent<CapsuleCollider>();
+        // 後で消す cc = visibility.GetComponent<CapsuleCollider>();
     }
-
-    /*private void OnTriggerEnter(Collider other)
-    {
-        
-    }*/
-
-    // Update is called once per frame
+    
     void Update()
     {
         
