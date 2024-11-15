@@ -24,7 +24,7 @@ public class player : MonoBehaviour
     }
 
     public Camera cam;
-    public float cameraSpeed = 0.1f;
+    public float cameraSpeed = 5f;
     public Transform target;  
     private Vector3 offset = new Vector3(0,0,0);
     private float camera_x;
