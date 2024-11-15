@@ -273,6 +273,7 @@
                     "isPartOfComposite": false
                 },
                 {
+
                     "name": "1D Axis",
                     "id": "5b6bc5d1-08e2-4651-8933-b606726c41ca",
                     "path": "1DAxis",
@@ -304,6 +305,17 @@
                     "action": "Role",
                     "isComposite": false,
                     "isPartOfComposite": true
+
+                    "name": "",
+                    "id": "e428dd3d-82ee-44ce-8564-eb81de82f045",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+
                 }
             ]
         },
