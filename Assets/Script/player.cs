@@ -10,6 +10,7 @@ public class player : MonoBehaviour
     Vector3 _velocity;
     Vector3 _camera;
     public float move_speed;
+    private float ms;
     public float stamina = 1;
     public bool dashflag = false;
     private void Awake()
@@ -21,6 +22,7 @@ public class player : MonoBehaviour
         // �{�^����������n�߂����Ɨ����ꂽ���ɃC�x���g��o�^���܂�
         holdAction.started += OnHoldStarted;
         holdAction.canceled += OnHoldCanceled;
+        ms = move_speed;
     }
 
     public Camera cam;
@@ -54,7 +56,7 @@ public class player : MonoBehaviour
         cam_forward = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z).normalized;
         cam_right = new Vector3(cam.transform.right.x, 0, cam.transform.right.z).normalized;
 
-        gameObject.transform.localPosition += (cam_right * _velocity.x + cam_forward * _velocity.z) * move_speed;
+        gameObject.transform.localPosition += (cam_right * _velocity.x + cam_forward * _velocity.z) * ms;
 
         //����U�ۗ�
         //_came.x = Mathf.Clamp(_came.x, -90, 90);
@@ -117,7 +119,7 @@ public class player : MonoBehaviour
         // �{�^���������ꂽ���~
         
         StopAllCoroutines();
-        move_speed = 0.01f;
+        ms = move_speed;
         dashflag = false;
     }
 
@@ -128,8 +130,8 @@ public class player : MonoBehaviour
             if(stamina > 0)
             {
                 //�X�^�~�i������Ȃ���ړ����x���グ��
-                move_speed = 0.02f;
-                stamina -= 0.003f;
+                ms = move_speed*2;
+                stamina -= 0.002f;
                 dashflag = true;
                 yield return null;
 
@@ -137,7 +139,7 @@ public class player : MonoBehaviour
             else
             {
                 //�X�^�~�i��0�����ɂȂ�̂�j�~���A�ړ����x��߂�
-                move_speed = 0.01f;
+                ms = move_speed;
                 stamina = 0;
                 yield return null;
             }
