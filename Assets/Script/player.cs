@@ -38,6 +38,15 @@ public class player : MonoBehaviour
     private float xRotation;
     public Vector3 _came = new Vector3(0, 0, 0);
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("stage"))
+        {
+            other.gameObject.SetActive(true);
+        }
+    }
+
+
     void LateUpdate()
     {
         // �J�������^�[�Q�b�g�ɒǏ]������
