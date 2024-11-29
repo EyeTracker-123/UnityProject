@@ -15,6 +15,7 @@ public class player : MonoBehaviour
     public float stamina = 1;
     public bool dashflag = false;
     public GameObject[] stagePos;
+    private int ii = 0;
     private void Awake()
     {
         // Player Input����InputAction���擾���܂�
@@ -30,8 +31,8 @@ public class player : MonoBehaviour
 
         for(int i=0;i<stagePos.Length;i++)
         {
-            if(gameObject.transform.position.z - 
-            stagePos[i].transform.position.z > -100)
+            if(Math.Abs(gameObject.transform.position.z - 
+            stagePos[i].transform.position.z) < 50)
             {
                 stagePos[i].SetActive(true);
             }
@@ -41,7 +42,7 @@ public class player : MonoBehaviour
             }
             //Debug.Log(stagePos[i]);
         }
-
+        //Debug.Log(stagePos.Length);
     }
 
     public Camera cam;
@@ -95,6 +96,22 @@ public class player : MonoBehaviour
 
        // target.Rotate(Vector3.up * camera_x);
 
+        Debug.Log(ii);
+
+        float posdiffZ = Math.Abs(gameObject.transform.position.z - 
+            stagePos[ii].transform.position.z);
+
+        float possdiffX = Math.Abs(gameObject.transform.position.x - 
+            stagePos[ii].transform.position.x);
+
+        if(posdiffZ < 50 && possdiffX < 50)stagePos[ii].SetActive(true);
+        else stagePos[ii].SetActive(false);
+
+        if(ii < stagePos.Length-1)ii++;
+        else ii=0;
+
+        
+
         //�X�^�~�i��1.0��荂���Ȃ������ɁA1�ɖ߂�����
         if (dashflag == false)
         {
@@ -109,22 +126,7 @@ public class player : MonoBehaviour
             }
         }
 
-        for(int i=0;i<stagePos.Length;i++)
-        {
-            if(gameObject.transform.position.z - 
-            stagePos[i].transform.position.z > -50 ||
-            gameObject.transform.position.z - 
-            stagePos[i].transform.position.z > 50)
-            {
-                stagePos[i].SetActive(true);
-            }
-            else
-            {
-                stagePos[i].SetActive(false);
-            }
-            //Debug.Log(stagePos[i]);
-        }
-
+        
     }
     
     void OnMove(InputValue value)
