@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class stageSetting : MonoBehaviour
 {
-    private GameObject player;// = FindAnyObjectByType("player");
+    private GameObject playerObj;// = FindAnyObjectByType("player");
     float objectPos;
     float playerPos;
     // Start is called before the first frame update
     void Start()
     {
+        playerObj = GameObject.Find("player");
+
         objectPos = gameObject.transform.position.x * gameObject.transform.position.x
             + gameObject.transform.position.z * gameObject.transform.position.z;
-        playerPos = player.transform.position.x * player.transform.position.x
-            + player.transform.position.z * player.transform.position.z;
+        playerPos = playerObj.transform.position.x * playerObj.transform.position.x
+            + playerObj.transform.position.z * playerObj.transform.position.z;
     }
     private void Update()
     {

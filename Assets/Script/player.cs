@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,6 +14,7 @@ public class player : MonoBehaviour
     private float ms;
     public float stamina = 1;
     public bool dashflag = false;
+    public GameObject[] stagePos;
     private void Awake()
     {
         // Player Input����InputAction���擾���܂�
@@ -23,6 +25,23 @@ public class player : MonoBehaviour
         holdAction.started += OnHoldStarted;
         holdAction.canceled += OnHoldCanceled;
         ms = move_speed;
+
+
+
+        for(int i=0;i<stagePos.Length;i++)
+        {
+            if(gameObject.transform.position.z - 
+            stagePos[i].transform.position.z > -100)
+            {
+                stagePos[i].SetActive(true);
+            }
+            else
+            {
+                stagePos[i].SetActive(false);
+            }
+            //Debug.Log(stagePos[i]);
+        }
+
     }
 
     public Camera cam;
@@ -38,13 +57,13 @@ public class player : MonoBehaviour
     private float xRotation;
     public Vector3 _came = new Vector3(0, 0, 0);
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("stage"))
         {
             other.gameObject.SetActive(true);
         }
-    }
+    }*/
 
 
     void LateUpdate()
@@ -89,6 +108,23 @@ public class player : MonoBehaviour
                 stamina += 0.003f;
             }
         }
+
+        for(int i=0;i<stagePos.Length;i++)
+        {
+            if(gameObject.transform.position.z - 
+            stagePos[i].transform.position.z > -50 ||
+            gameObject.transform.position.z - 
+            stagePos[i].transform.position.z > 50)
+            {
+                stagePos[i].SetActive(true);
+            }
+            else
+            {
+                stagePos[i].SetActive(false);
+            }
+            //Debug.Log(stagePos[i]);
+        }
+
     }
     
     void OnMove(InputValue value)
@@ -154,6 +190,10 @@ public class player : MonoBehaviour
             }
         }
     }
+
+    
+
+
 }
 
 
