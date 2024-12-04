@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,8 +11,11 @@ public class player : MonoBehaviour
     Vector3 _velocity;
     Vector3 _camera;
     public float move_speed;
+    private float ms;
     public float stamina = 1;
     public bool dashflag = false;
+    public GameObject[] stagePos;
+    private int ii = 0;
     private void Awake()
     {
         // Player Input����InputAction���擾���܂�
@@ -21,6 +25,24 @@ public class player : MonoBehaviour
         // �{�^����������n�߂����Ɨ����ꂽ���ɃC�x���g��o�^���܂�
         holdAction.started += OnHoldStarted;
         holdAction.canceled += OnHoldCanceled;
+        ms = move_speed;
+
+
+
+        for(int i=0;i<stagePos.Length;i++)
+        {
+            if(Math.Abs(gameObject.transform.position.z - 
+            stagePos[i].transform.position.z) < 50)
+            {
+                stagePos[i].SetActive(true);
+            }
+            else
+            {
+                stagePos[i].SetActive(false);
+            }
+            //Debug.Log(stagePos[i]);
+        }
+        //Debug.Log(stagePos.Length);
     }
 
     public Camera cam;
@@ -35,6 +57,15 @@ public class player : MonoBehaviour
 
     private float xRotation;
     public Vector3 _came = new Vector3(0, 0, 0);
+
+    /*private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("stage"))
+        {
+            other.gameObject.SetActive(true);
+        }
+    }*/
+
 
     void LateUpdate()
     {
@@ -54,7 +85,7 @@ public class player : MonoBehaviour
         cam_forward = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z).normalized;
         cam_right = new Vector3(cam.transform.right.x, 0, cam.transform.right.z).normalized;
 
-        gameObject.transform.localPosition += (cam_right * _velocity.x + cam_forward * _velocity.z) * move_speed;
+        gameObject.transform.localPosition += (cam_right * _velocity.x + cam_forward * _velocity.z) * ms;
 
         //����U�ۗ�
         //_came.x = Mathf.Clamp(_came.x, -90, 90);
@@ -64,6 +95,22 @@ public class player : MonoBehaviour
         gameObject.transform.localRotation = Quaternion.Euler(0,_came.y,0);
 
        // target.Rotate(Vector3.up * camera_x);
+
+        Debug.Log(ii);
+
+        float posdiffZ = Math.Abs(gameObject.transform.position.z - 
+            stagePos[ii].transform.position.z);
+
+        float possdiffX = Math.Abs(gameObject.transform.position.x - 
+            stagePos[ii].transform.position.x);
+
+        if(posdiffZ < 50 && possdiffX < 50)stagePos[ii].SetActive(true);
+        else stagePos[ii].SetActive(false);
+
+        if(ii < stagePos.Length-1)ii++;
+        else ii=0;
+
+        
 
         //�X�^�~�i��1.0��荂���Ȃ������ɁA1�ɖ߂�����
         if (dashflag == false)
@@ -78,6 +125,8 @@ public class player : MonoBehaviour
                 stamina += 0.003f;
             }
         }
+
+        
     }
     
     void OnMove(InputValue value)
@@ -117,7 +166,7 @@ public class player : MonoBehaviour
         // �{�^���������ꂽ���~
         
         StopAllCoroutines();
-        move_speed = 0.01f;
+        ms = move_speed;
         dashflag = false;
     }
 
@@ -128,8 +177,8 @@ public class player : MonoBehaviour
             if(stamina > 0)
             {
                 //�X�^�~�i������Ȃ���ړ����x���グ��
-                move_speed = 0.02f;
-                stamina -= 0.003f;
+                ms = move_speed*2;
+                stamina -= 0.002f;
                 dashflag = true;
                 yield return null;
 
@@ -137,12 +186,16 @@ public class player : MonoBehaviour
             else
             {
                 //�X�^�~�i��0�����ɂȂ�̂�j�~���A�ړ����x��߂�
-                move_speed = 0.01f;
+                ms = move_speed;
                 stamina = 0;
                 yield return null;
             }
         }
     }
+
+    
+
+
 }
 
 
