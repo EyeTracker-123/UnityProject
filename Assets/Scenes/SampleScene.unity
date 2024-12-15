@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4568,7 +4568,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.2
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 9654a46cb75503746b3bbb7e59ddcdc2, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &710142538
 Transform:
@@ -13035,6 +13035,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 4333802244963397527, guid: 08752f24478d5e046a41d633ffe9b385,
+        type: 3}
+      propertyPath: move_speed
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 4333802244963397527, guid: 08752f24478d5e046a41d633ffe9b385,
         type: 3}
       propertyPath: stagePos.Array.size
