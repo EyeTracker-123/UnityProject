@@ -88,7 +88,7 @@ public class TETConnect : MonoBehaviour
     private byte[] buffer;
 
 
-    public TETData TET;
+    public TETData TET = new TETData();
     
 
 
