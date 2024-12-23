@@ -8,5 +8,5 @@ public class testScript : MonoBehaviour
     {
         public int x = 1234;
     }
-    public newClass nc;
+    public newClass nc = new newClass();
 }

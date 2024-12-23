@@ -9,6 +9,6 @@ public class NewBehaviourScript : MonoBehaviour
     void Start()
     {
         ts = GetComponent<testScript>();
-        Debug.Log(ts.nc);
+        Debug.Log(ts.nc.x);
     }
 }
