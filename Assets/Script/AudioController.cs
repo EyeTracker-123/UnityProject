@@ -10,8 +10,9 @@ public class AudioController : MonoBehaviour
     public AudioSource audioSource;
 
     public TETConnect eyeTracker;
-   
-     
+
+    private GameObject tet;
+
     public float minVolume;
 
     public float maxVolume;
@@ -22,10 +23,15 @@ public class AudioController : MonoBehaviour
 
     private bool fixFlag = false;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        tet = GameObject.Find("EyeTrackerController");
+    }
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        eyeTracker = GetComponent<TETConnect>();
+        eyeTracker = tet.GetComponent<TETConnect>();
     }
 
     // Update is called once per frame
@@ -40,7 +46,7 @@ public class AudioController : MonoBehaviour
             
         }*/
         
-        fixFlag = eyeTracker;
+        fixFlag = eyeTracker.TET.values.frame.fix;
         
         
 

@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 117849111}
-  - component: {fileID: 117849110}
   - component: {fileID: 117849109}
   m_Layer: 0
   m_Name: EyeTrackerController
@@ -191,20 +190,6 @@ MonoBehaviour:
         state: 0
         time: 0
         timestamp: 
---- !u!114 &117849110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 117849108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a17bd621ba421342b64d71a57211c4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eyeTracker: {fileID: 117849109}
-  cate: 0
 --- !u!4 &117849111
 Transform:
   m_ObjectHideFlags: 0
@@ -356,7 +341,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ff73c0b07ceb874bbdea78a8eec0f68, type: 3}
-
 --- !u!1 &582997476
 GameObject:
   m_ObjectHideFlags: 0
