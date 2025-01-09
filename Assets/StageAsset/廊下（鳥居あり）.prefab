@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 8455778796843131736}
   - component: {fileID: 5507263947816276231}
   m_Layer: 0
-  m_Name: ObstaclObject
+  m_Name: Distance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -517,7 +517,7 @@ Transform:
   m_GameObject: {fileID: 5166165340933620101}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2.6, y: 2.17281, z: 7.24}
+  m_LocalPosition: {x: -0.09, y: 2.17281, z: 7.48}
   m_LocalScale: {x: 0.99999976, y: 1, z: 1.2499996}
   m_ConstrainProportionsScale: 0
   m_Children: []
