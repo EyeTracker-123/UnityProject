@@ -7521,7 +7521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _navMeshAgent: {fileID: 1328836213}
-  _player: {fileID: 1959298613}
+  player: {fileID: 1959298613}
 --- !u!1 &1329220622 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7400290430510979022, guid: a99c6167c3e15ba4cb2ecc3694c7de19,
