@@ -10,17 +10,6 @@ using System;
 
 public class TETConnect : MonoBehaviour
 {
-    public bool Fix
-    {
-    get
-    {
-        if (TET != null && TET.values != null && TET.values.frame != null)
-        {
-            return TET.values.frame.fix;
-        }
-        return false; // デフォルト値
-    }
-    }
 
 
 
