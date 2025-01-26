@@ -12,21 +12,25 @@ public class GameManager : MonoBehaviour
     private GameObject enemy;
     [SerializeField]
     private Transform Playertf;
+    private string tagName = "open";
     private int moveThreshold;
     private int followTime;
     private float playerMoveAmount = 0;
     Vector3 pyPosition ;
 
 
-    public GameObject[,] gameObjects = new GameObject[8,8];
+    private List<GameObject> gameObjects = new List<GameObject>();
 
     Vector3 tempPosition;
+    Vector3 appearPoint;
     private bool isFollowing = false;
     
     void Start(){
         
         tempPosition = Playertf.position;
+        enemy = GameObject.Find("enemy");
 
+        
     }
     /// <summary>
     /// 移動量が一定量超えたら追いかけモードに変更
@@ -37,6 +41,7 @@ public class GameManager : MonoBehaviour
         setFlag();
 
         if(playerMoveAmount > moveThreshold){
+            SetEnemyPosition();
             StartCoroutine(setMode());
         }
        
@@ -63,6 +68,29 @@ public class GameManager : MonoBehaviour
       
     }
 
+    void SetEnemyPosition(){
+        gameObjects.Clear();
+        
+        //.where＝条件に当てはまるものだけ取得
+        gameObjects = FindObjectsOfType<GameObject>().Where
+        (obj => obj.name.Contains("大部屋(") && obj.CompareTag(tagName))
+        .ToList();
+
+        foreach(GameObject obj in gameObjects){
+            Debug.Log(obj.name);
+        }
+
+        /*//OrderByDescending = 値が大きい順に並べ替え
+        GameObject furthestObject = gameObjects.OrderByDescending
+        //.Destance＝二つのオブジェクトを比較し、差分をとる
+        (obj => Vector3.Distance(Playertf.position, obj.transform.position))
+        //リストの最初を取得
+        .FirstOrDefault();*/
+
+        /*appearPoint = new Vector3(furthestObject.transform.position.x, 1,furthestObject.transform.position.z);
+        enemy.transform.position = appearPoint;*/
+
+    }
     void startMusic(){
 
     }
