@@ -96,11 +96,9 @@ public class player : MonoBehaviour
 
        // target.Rotate(Vector3.up * camera_x);
 
+//        Debug.Log(ii);
 
-        //Debug.Log(ii);
-
-
-        /*float posdiffZ = Math.Abs(gameObject.transform.position.z - 
+        float posdiffZ = Math.Abs(gameObject.transform.position.z - 
             stagePos[ii].transform.position.z);
 
         float possdiffX = Math.Abs(gameObject.transform.position.x - 
@@ -110,7 +108,7 @@ public class player : MonoBehaviour
         else stagePos[ii].SetActive(false);
 
         if(ii < stagePos.Length-1)ii++;
-        else ii=0;*/
+        else ii=0;
 
         
 
