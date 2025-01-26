@@ -4,16 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject enemy;
+    private GameObject enemy;  
+    [SerializeField]
+    private NavMeshAgent agent;
+    
     [SerializeField]
     private Transform Playertf;
     private string tagName = "open";
+    [SerializeField]
     private int moveThreshold;
+    [SerializeField]
     private int followTime;
     private float playerMoveAmount = 0;
     Vector3 pyPosition ;
@@ -28,7 +34,7 @@ public class GameManager : MonoBehaviour
     void Start(){
         
         tempPosition = Playertf.position;
-        enemy = GameObject.Find("enemy");
+        //enemy = GameObject.Find("enemy");
 
         
     }
@@ -76,19 +82,19 @@ public class GameManager : MonoBehaviour
         (obj => obj.name.Contains("大部屋(") && obj.CompareTag(tagName))
         .ToList();
 
-        foreach(GameObject obj in gameObjects){
-            Debug.Log(obj.name);
-        }
+        
 
-        /*//OrderByDescending = 値が大きい順に並べ替え
+        //OrderByDescending = 値が大きい順に並べ替え
         GameObject furthestObject = gameObjects.OrderByDescending
         //.Destance＝二つのオブジェクトを比較し、差分をとる
         (obj => Vector3.Distance(Playertf.position, obj.transform.position))
         //リストの最初を取得
-        .FirstOrDefault();*/
+        .FirstOrDefault();
 
-        /*appearPoint = new Vector3(furthestObject.transform.position.x, 1,furthestObject.transform.position.z);
-        enemy.transform.position = appearPoint;*/
+        enemy.SetActive(true);
+
+        appearPoint = new Vector3(furthestObject.transform.position.x, 1,furthestObject.transform.position.z);
+        agent.Warp(appearPoint);
 
     }
     void startMusic(){
@@ -99,7 +105,7 @@ public class GameManager : MonoBehaviour
         
     }
     IEnumerator setMode(){
-        enemy.SetActive(true);
+        
         yield return new WaitForSeconds(followTime);
         enemy.SetActive(false);
         isFollowing = false;
