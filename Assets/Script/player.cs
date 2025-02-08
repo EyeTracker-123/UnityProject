@@ -193,8 +193,55 @@ public class player : MonoBehaviour
         }
     }
 
-    
+    public float distance = 10.0f;
 
+    public bool A = false;
+    public bool B = false;
+    public bool C = false;
+    public bool D = false;
+    public bool E = false;
+    public bool F = false;
+    public bool G = false;
+
+    void OnFire()//アイテムやドアなどのアクションはこの中で書く
+    {
+        RaycastHit hit;
+        
+        Vector3 direction = cam.transform.forward;
+        if (Physics.Raycast(cam.transform.position,direction,out hit, distance))
+        {
+            GameObject hitobj = hit.collider.gameObject;
+            if (hitobj.CompareTag("key"))
+            {
+                keyFlag kf = hitobj.GetComponent<keyFlag>();
+                string kn = kf.keyname;
+
+                switch (kn)
+                {
+                    case "keyA":
+                        break;
+
+                    case "keyB":
+                        break;
+
+                    case "keyC":
+                        break;
+
+                    case "keyD":
+                        break;
+
+                    case "keyE":
+                        break;
+
+                    case "keyF":
+                        break;
+
+                    case "keyG":
+                        break;
+                }
+            }
+        }
+    }
 
 }
 
