@@ -6,6 +6,7 @@ TagManager:
   tags:
   - stage
   - key
+  - keydoor
   layers:
   - Default
   - TransparentFX

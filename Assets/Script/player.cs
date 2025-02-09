@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class player : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class player : MonoBehaviour
     public bool dashflag = false;
     public GameObject[] stagePos;
     private int ii = 0;
+
+    public Text textObj;
+
     private void Awake()
     {
         // Player Input����InputAction���擾���܂�
@@ -193,7 +197,7 @@ public class player : MonoBehaviour
         }
     }
 
-    public float distance = 10.0f;
+    public float distance = 5.0f;
 
     public bool A = false;
     public bool B = false;
@@ -207,6 +211,7 @@ public class player : MonoBehaviour
     {
         RaycastHit hit;
         
+
         Vector3 direction = cam.transform.forward;
         if (Physics.Raycast(cam.transform.position,direction,out hit, distance))
         {
@@ -219,9 +224,13 @@ public class player : MonoBehaviour
                 switch (kn)
                 {
                     case "keyA":
+                        A = true;
+                        hitobj.SetActive(false);
                         break;
 
                     case "keyB":
+                        B = true;
+                        hitobj.SetActive(false);
                         break;
 
                     case "keyC":
@@ -240,8 +249,76 @@ public class player : MonoBehaviour
                         break;
                 }
             }
+            if (hitobj.CompareTag("keydoor"))
+            {
+                doorName dn = hitobj.GetComponent<doorName>();
+                string D_Number = dn.doorNumber;
+
+                switch (D_Number)
+                {
+                    case "doorA":
+                        if(A == true)
+                        {
+                            hitobj.SetActive(false);//簡易的に非表示にしている
+                        }
+                        else if(B == true || C == true || D == true || E == true || F == true || G == true )
+                        {
+                            StartCoroutine("otherKey");
+                        }
+                        else
+                        {
+                            StartCoroutine("noKey");
+                        }
+                        break;
+
+                    case "doorB":
+                        if (A == true)
+                        {
+                            hitobj.SetActive(false);//簡易的に非表示にしている
+                        }
+                        else if (A == true || C == true || D == true || E == true || F == true || G == true)
+                        {
+                            StartCoroutine("otherKey");
+                        }
+                        else
+                        {
+                            StartCoroutine("noKey");
+                        }
+                        break;
+
+                    case "doorC":
+                        break;
+
+                    case "doorD":
+                        break;
+
+                    case "doorE":
+                        break;
+
+                    case "doorF":
+                        break;
+
+                    case "doorG":
+                        break;
+                }
+            }
         }
     }
+    IEnumerator otherKey()
+    {
+        Text textArea = textObj.GetComponent<Text>();
+        textArea.text = "別の鍵が必要だ";
+        yield return new WaitForSeconds(5);
+        textArea.text = " ";
+    }
+    IEnumerator noKey()
+    {
+        Text textArea = textObj.GetComponent<Text>();
+        textArea.text = "鍵がかかっている";
+        yield return new WaitForSeconds(5);
+        textArea.text = " ";
+    }
+
 
 }
 
