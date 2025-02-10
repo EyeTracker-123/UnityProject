@@ -234,18 +234,28 @@ public class player : MonoBehaviour
                         break;
 
                     case "keyC":
+                        C = true;
+                        hitobj.SetActive(false);
                         break;
 
                     case "keyD":
+                        D = true;
+                        hitobj.SetActive(false);
                         break;
 
                     case "keyE":
+                        E = true;
+                        hitobj.SetActive(false);
                         break;
 
                     case "keyF":
+                        F = true;
+                        hitobj.SetActive(false);
                         break;
 
                     case "keyG":
+                        G = true;
+                        hitobj.SetActive(false);
                         break;
                 }
             }
@@ -254,12 +264,17 @@ public class player : MonoBehaviour
                 doorName dn = hitobj.GetComponent<doorName>();
                 string D_Number = dn.doorNumber;
 
+                void opendoor()
+                {
+                    hitobj.SetActive(false);//簡易的に非表示にしている
+                }
+
                 switch (D_Number)
                 {
                     case "doorA":
                         if(A == true)
                         {
-                            hitobj.SetActive(false);//簡易的に非表示にしている
+                            opendoor();
                         }
                         else if(B == true || C == true || D == true || E == true || F == true || G == true )
                         {
@@ -272,7 +287,7 @@ public class player : MonoBehaviour
                         break;
 
                     case "doorB":
-                        if (A == true)
+                        if (B == true)
                         {
                             hitobj.SetActive(false);//簡易的に非表示にしている
                         }
@@ -287,18 +302,78 @@ public class player : MonoBehaviour
                         break;
 
                     case "doorC":
+                        if (C == true)
+                        {
+                            opendoor();
+                        }
+                        else if (B == true || A == true || D == true || E == true || F == true || G == true)
+                        {
+                            StartCoroutine("otherKey");
+                        }
+                        else
+                        {
+                            StartCoroutine("noKey");
+                        }
                         break;
 
                     case "doorD":
+                        if (D == true)
+                        {
+                            opendoor();
+                        }
+                        else if (B == true || C == true || A == true || E == true || F == true || G == true)
+                        {
+                            StartCoroutine("otherKey");
+                        }
+                        else
+                        {
+                            StartCoroutine("noKey");
+                        }
                         break;
 
                     case "doorE":
+                        if (E == true)
+                        {
+                            opendoor();
+                        }
+                        else if (B == true || C == true || D == true || A == true || F == true || G == true)
+                        {
+                            StartCoroutine("otherKey");
+                        }
+                        else
+                        {
+                            StartCoroutine("noKey");
+                        }
                         break;
 
                     case "doorF":
+                        if (F == true)
+                        {
+                            opendoor();
+                        }
+                        else if (B == true || C == true || D == true || E == true || A == true || G == true)
+                        {
+                            StartCoroutine("otherKey");
+                        }
+                        else
+                        {
+                            StartCoroutine("noKey");
+                        }
                         break;
 
                     case "doorG":
+                        if (G == true)
+                        {
+                            opendoor();
+                        }
+                        else if (B == true || C == true || D == true || E == true || F == true || A == true)
+                        {
+                            StartCoroutine("otherKey");
+                        }
+                        else
+                        {
+                            StartCoroutine("noKey");
+                        }
                         break;
                 }
             }
