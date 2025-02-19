@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
 
 public class player : MonoBehaviour
@@ -70,6 +72,24 @@ public class player : MonoBehaviour
         }
     }*/
 
+    public bool isStairsend = false;
+
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Stairsend"))
+        {
+            isStairsend = true;
+        }
+        else
+        {
+            isStairsend = false;
+        }
+    }
+
+
+
+
+  
 
     void LateUpdate()
     {
@@ -129,14 +149,30 @@ public class player : MonoBehaviour
                 stamina += 0.003f;
             }
         }
-
         
     }
-    
+    Vector3 moveDirection;
+
+    public float speed = 3f;
+    public float gravity = 10f;
+    public float jumpSpeed = 5f;
+
+    float PlayerY;
+
     void OnMove(InputValue value)
     {
-        var axis = value.Get<Vector2>();
-        _velocity = new Vector3(axis.x,0, axis.y);
+        if (isStairsend) 
+        {
+            var axis = value.Get<Vector2>();
+            //PlayerY =
+            _velocity = new Vector3(axis.x, axis.y*10, 0);
+            Debug.Log("y="+axis.y);
+        }
+        else 
+        { 
+            var axis = value.Get<Vector2>();
+            _velocity = new Vector3(axis.x, 0, axis.y);
+        }
     }
     void OnLook(InputValue value)
     {
@@ -180,6 +216,7 @@ public class player : MonoBehaviour
         {            
             if(stamina > 0)
             {
+
                 //�X�^�~�i������Ȃ���ړ����x���グ��
                 ms = move_speed*2;
                 stamina -= 0.002f;

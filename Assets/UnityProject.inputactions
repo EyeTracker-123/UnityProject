@@ -241,6 +241,17 @@
                 },
                 {
                     "name": "",
+                    "id": "d79581d3-7bba-4a6b-960e-9495c8c3d5e0",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick;Gamepad",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b0be8f6d-ec1e-49cf-a2bd-a52f11548710",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
