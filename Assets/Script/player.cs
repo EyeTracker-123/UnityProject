@@ -84,20 +84,7 @@ public class player : MonoBehaviour
         }
     }
 
-    /* void OnCollisionStay(Collision collision)
-     {
-         if (collision.gameObject.CompareTag("Stairsend"))
-         {
-             isStairsend = true;
-         }
-     }
-     void OnCollisionExit(Collision collision)
-     {
-         if (collision.gameObject.CompareTag("Stairsend"))
-         {
-             isStairsend = false;
-         }
-     }*/
+   
 
 
 
@@ -113,18 +100,7 @@ public class player : MonoBehaviour
     
     void Update()
     {
-        /*
-         
-        rb = gameObject.GetComponent<Rigidbody>();
-        if (isStairsend)
-        {
-            rb.useGravity = false;
-            Debug.Log("ok");
-           // gameObject.transform.position += new Vector3(0,0.1f,0);
-        }
-        else rb.useGravity = true;
-
-        */
+       
         _came.x += (_camera.x * cameraSpeed) * -1;
         _came.y += _camera.y * cameraSpeed;
 
@@ -263,7 +239,7 @@ public class player : MonoBehaviour
     public bool E = false;
     public bool F = false;
     public bool G = false;
-
+    string tKey;
     void OnFire()//アイテムやドアなどのアクションはこの中で書く
     {
         RaycastHit hit;
@@ -277,42 +253,56 @@ public class player : MonoBehaviour
             {
                 keyFlag kf = hitobj.GetComponent<keyFlag>();
                 string kn = kf.keyname;
-
+               
                 switch (kn)
                 {
                     case "keyA":
                         A = true;
+                        tKey = "A";
                         hitobj.SetActive(false);
+                        StartCoroutine("getKey");
                         break;
 
                     case "keyB":
                         B = true;
+                        tKey = "B";
                         hitobj.SetActive(false);
+                        StartCoroutine("getKey");
                         break;
 
                     case "keyC":
                         C = true;
+                        tKey = "C";
                         hitobj.SetActive(false);
+                        StartCoroutine("getKey");
                         break;
 
                     case "keyD":
                         D = true;
+                        tKey = "D";
                         hitobj.SetActive(false);
+                        StartCoroutine("getKey");
                         break;
 
                     case "keyE":
                         E = true;
+                        tKey = "E";
                         hitobj.SetActive(false);
+                        StartCoroutine("getKey");
                         break;
 
                     case "keyF":
                         F = true;
+                        tKey = "F";
                         hitobj.SetActive(false);
+                        StartCoroutine("getKey");
                         break;
 
                     case "keyG":
                         G = true;
+                        tKey = "G";
                         hitobj.SetActive(false);
+                        StartCoroutine("getKey");
                         break;
                 }
             }
@@ -346,7 +336,7 @@ public class player : MonoBehaviour
                     case "doorB":
                         if (B == true)
                         {
-                            hitobj.SetActive(false);//簡易的に非表示にしている
+                            opendoor();
                         }
                         else if (A == true || C == true || D == true || E == true || F == true || G == true)
                         {
@@ -442,6 +432,7 @@ public class player : MonoBehaviour
         textArea.text = "別の鍵が必要だ";
         yield return new WaitForSeconds(5);
         textArea.text = " ";
+        yield break;
     }
     IEnumerator noKey()
     {
@@ -449,6 +440,15 @@ public class player : MonoBehaviour
         textArea.text = "鍵がかかっている";
         yield return new WaitForSeconds(5);
         textArea.text = " ";
+        yield break;
+    }
+    IEnumerator getKey() 
+    {
+        Text textArea = textObj.GetComponent<Text>();
+        textArea.text = tKey +"の鍵を手に入れた";
+        yield return new WaitForSeconds(5);
+        textArea.text = " ";
+        yield break;
     }
 
 
