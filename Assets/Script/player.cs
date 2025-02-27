@@ -74,22 +74,33 @@ public class player : MonoBehaviour
 
     public bool isStairsend = false;
 
-    void OnCollisionStay(Collision collision)
+
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Stairsend"))
         {
-            isStairsend = true;
-        }
-        else
-        {
-            isStairsend = false;
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x,collision.transform.position.y+1.5f, gameObject.transform.position.z);
+
         }
     }
 
+    /* void OnCollisionStay(Collision collision)
+     {
+         if (collision.gameObject.CompareTag("Stairsend"))
+         {
+             isStairsend = true;
+         }
+     }
+     void OnCollisionExit(Collision collision)
+     {
+         if (collision.gameObject.CompareTag("Stairsend"))
+         {
+             isStairsend = false;
+         }
+     }*/
 
 
 
-  
 
     void LateUpdate()
     {
@@ -97,12 +108,23 @@ public class player : MonoBehaviour
         cam.transform.position = target.position + offset;
     }
     // ��ŏ��� public float x = 0.01f;
+
+    Rigidbody rb;
+    
     void Update()
     {
-        //����ŏ�������
-        //gameObject.transform.localPosition += _velocity * move_speed;
-        
+        /*
+         
+        rb = gameObject.GetComponent<Rigidbody>();
+        if (isStairsend)
+        {
+            rb.useGravity = false;
+            Debug.Log("ok");
+           // gameObject.transform.position += new Vector3(0,0.1f,0);
+        }
+        else rb.useGravity = true;
 
+        */
         _came.x += (_camera.x * cameraSpeed) * -1;
         _came.y += _camera.y * cameraSpeed;
 
@@ -149,7 +171,12 @@ public class player : MonoBehaviour
                 stamina += 0.003f;
             }
         }
+
+       
+        //����ŏ�������
+        //gameObject.transform.localPosition += _velocity * move_speed;
         
+
     }
     Vector3 moveDirection;
 
@@ -158,21 +185,14 @@ public class player : MonoBehaviour
     public float jumpSpeed = 5f;
 
     float PlayerY;
-
+  
     void OnMove(InputValue value)
     {
-        if (isStairsend) 
-        {
-            var axis = value.Get<Vector2>();
-            //PlayerY =
-            _velocity = new Vector3(axis.x, axis.y*10, 0);
-            Debug.Log("y="+axis.y);
-        }
-        else 
-        { 
-            var axis = value.Get<Vector2>();
+        
+        var axis = value.Get<Vector2>();
+      
             _velocity = new Vector3(axis.x, 0, axis.y);
-        }
+        
     }
     void OnLook(InputValue value)
     {

@@ -216,55 +216,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 102295147}
     m_Modifications:
-    - target: {fileID: 550947065982678982, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 2368615464949134441, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 3058244898059872778, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133372772493576059, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 5158521192445931543, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 5671136698219085381, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 6973667203243742631, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 7409018447887920005, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
     - target: {fileID: 7419792465093291711, guid: e09a2ef4bbe9f874081b081d06c0e168,
         type: 3}
       propertyPath: m_Name
       value: "\u5ECA\u4E0B\uFF08\u4E00\u65B9\u901A\u884C\uFF09"
-      objectReference: {fileID: 0}
-    - target: {fileID: 8405689346960699457, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8000001
       objectReference: {fileID: 0}
     - target: {fileID: 8405689346960699457, guid: e09a2ef4bbe9f874081b081d06c0e168,
         type: 3}
@@ -9433,46 +9388,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 102295147}
     m_Modifications:
-    - target: {fileID: 550947065982678982, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 2368615464949134441, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 3058244898059872778, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133372772493576059, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 5158521192445931543, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 5671136698219085381, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 6973667203243742631, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 7409018447887920005, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
     - target: {fileID: 7419792465093291711, guid: e09a2ef4bbe9f874081b081d06c0e168,
         type: 3}
       propertyPath: m_Name
@@ -12613,7 +12528,7 @@ PrefabInstance:
     - target: {fileID: 5671136698219085381, guid: e09a2ef4bbe9f874081b081d06c0e168,
         type: 3}
       propertyPath: m_TagString
-      value: Stairsend
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6973667203243742631, guid: e09a2ef4bbe9f874081b081d06c0e168,
         type: 3}
@@ -16441,46 +16356,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 102295147}
     m_Modifications:
-    - target: {fileID: 550947065982678982, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 2368615464949134441, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 3058244898059872778, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133372772493576059, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 5158521192445931543, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 5671136698219085381, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 6973667203243742631, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
-    - target: {fileID: 7409018447887920005, guid: e09a2ef4bbe9f874081b081d06c0e168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Stairsend
-      objectReference: {fileID: 0}
     - target: {fileID: 7419792465093291711, guid: e09a2ef4bbe9f874081b081d06c0e168,
         type: 3}
       propertyPath: m_Name
@@ -16649,6 +16524,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 4333802244963397527, guid: 08752f24478d5e046a41d633ffe9b385,
+        type: 3}
+      propertyPath: C
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4333802244963397527, guid: 08752f24478d5e046a41d633ffe9b385,
         type: 3}
       propertyPath: cam
