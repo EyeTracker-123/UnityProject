@@ -314,11 +314,13 @@ public class player : MonoBehaviour
                 void opendoor()
                 {
                     hitobj.SetActive(false);//簡易的に非表示にしている
+                    StartCoroutine("noKey");
                 }
 
                 switch (D_Number)
                 {
                     case "doorA":
+                        tKey = "A";
                         if(A == true)
                         {
                             opendoor();
@@ -334,6 +336,7 @@ public class player : MonoBehaviour
                         break;
 
                     case "doorB":
+                        tKey = "B";
                         if (B == true)
                         {
                             opendoor();
@@ -349,6 +352,7 @@ public class player : MonoBehaviour
                         break;
 
                     case "doorC":
+                        tKey = "C";
                         if (C == true)
                         {
                             opendoor();
@@ -364,6 +368,7 @@ public class player : MonoBehaviour
                         break;
 
                     case "doorD":
+                        tKey = "D";
                         if (D == true)
                         {
                             opendoor();
@@ -379,6 +384,7 @@ public class player : MonoBehaviour
                         break;
 
                     case "doorE":
+                        tKey = "E";
                         if (E == true)
                         {
                             opendoor();
@@ -394,6 +400,7 @@ public class player : MonoBehaviour
                         break;
 
                     case "doorF":
+                        tKey = "F";
                         if (F == true)
                         {
                             opendoor();
@@ -409,6 +416,7 @@ public class player : MonoBehaviour
                         break;
 
                     case "doorG":
+                        tKey = "G";
                         if (G == true)
                         {
                             opendoor();
@@ -429,7 +437,7 @@ public class player : MonoBehaviour
     IEnumerator otherKey()
     {
         Text textArea = textObj.GetComponent<Text>();
-        textArea.text = "別の鍵が必要だ";
+        textArea.text = tKey+"の鍵が必要だ";
         yield return new WaitForSeconds(5);
         textArea.text = " ";
         yield break;
@@ -437,7 +445,7 @@ public class player : MonoBehaviour
     IEnumerator noKey()
     {
         Text textArea = textObj.GetComponent<Text>();
-        textArea.text = "鍵がかかっている";
+        textArea.text = tKey+"の鍵を使った";
         yield return new WaitForSeconds(5);
         textArea.text = " ";
         yield break;
@@ -446,7 +454,7 @@ public class player : MonoBehaviour
     {
         Text textArea = textObj.GetComponent<Text>();
         textArea.text = tKey +"の鍵を手に入れた";
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
         textArea.text = " ";
         yield break;
     }
