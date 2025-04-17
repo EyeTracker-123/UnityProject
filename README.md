@@ -1,4 +1,4 @@
-# Oz-branches の仕様書
+# Oz-branches の説明書
 
 ## プレイヤー操作一覧
 - ### 移動
