@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4187515149762375965}
   - component: {fileID: 1517748029868736691}
   - component: {fileID: -6273376469196869576}
-  - component: {fileID: 3043616685218963440}
   m_Layer: 0
   m_Name: door
   m_TagString: keydoor
@@ -64,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 0bfed7ceda8c2ba469f07aa9bbe6e1bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -120,15 +119,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorNumber: 
---- !u!114 &3043616685218963440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1707787092998360286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3a0d2c544ff764bbae1f2916faa3a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
