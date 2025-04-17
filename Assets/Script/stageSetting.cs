@@ -36,7 +36,8 @@ public class stageSetting : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            Debug.Log("don't open");
         }
 
         yield return new WaitForSeconds(2);
