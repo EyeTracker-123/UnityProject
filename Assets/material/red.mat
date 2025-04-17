@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 2100000, guid: ee1cdfb34eaa5584f9714154a805c95b, type: 2}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _RECEIVE_SHADOWS_OFF
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -25,7 +26,8 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _ReceiveShadows: 0
     m_Colors:
     - _BaseColor: {r: 0.7169812, g: 0.21306516, b: 0.22802055, a: 1}
     - _Color: {r: 0.7169812, g: 0.21306512, b: 0.22802052, a: 1}

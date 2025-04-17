@@ -240,7 +240,7 @@ public class player : MonoBehaviour
     public bool F = false;
     public bool G = false;
     string tKey;
-    void OnFire()//アイテムやドアなどのアクションはこの中で書く
+    void OnFire()//アイテムやドア"など"のアクションはこの中で書く
     {
         RaycastHit hit;
         
