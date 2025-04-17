@@ -325,13 +325,9 @@ public class player : MonoBehaviour
                         {
                             opendoor();
                         }
-                        else if(B == true || C == true || D == true || E == true || F == true || G == true )
-                        {
-                            StartCoroutine("otherKey");
-                        }
                         else
                         {
-                            StartCoroutine("noKey");
+                            StartCoroutine("otherKey");
                         }
                         break;
 
@@ -341,13 +337,9 @@ public class player : MonoBehaviour
                         {
                             opendoor();
                         }
-                        else if (A == true || C == true || D == true || E == true || F == true || G == true)
-                        {
-                            StartCoroutine("otherKey");
-                        }
                         else
                         {
-                            StartCoroutine("noKey");
+                            StartCoroutine("otherKey");
                         }
                         break;
 
@@ -357,13 +349,9 @@ public class player : MonoBehaviour
                         {
                             opendoor();
                         }
-                        else if (B == true || A == true || D == true || E == true || F == true || G == true)
-                        {
-                            StartCoroutine("otherKey");
-                        }
                         else
                         {
-                            StartCoroutine("noKey");
+                            StartCoroutine("otherKey");
                         }
                         break;
 
@@ -373,13 +361,9 @@ public class player : MonoBehaviour
                         {
                             opendoor();
                         }
-                        else if (B == true || C == true || A == true || E == true || F == true || G == true)
-                        {
-                            StartCoroutine("otherKey");
-                        }
                         else
                         {
-                            StartCoroutine("noKey");
+                            StartCoroutine("otherKey");
                         }
                         break;
 
@@ -389,13 +373,9 @@ public class player : MonoBehaviour
                         {
                             opendoor();
                         }
-                        else if (B == true || C == true || D == true || A == true || F == true || G == true)
-                        {
-                            StartCoroutine("otherKey");
-                        }
                         else
                         {
-                            StartCoroutine("noKey");
+                            StartCoroutine("otherKey");
                         }
                         break;
 
@@ -405,13 +385,9 @@ public class player : MonoBehaviour
                         {
                             opendoor();
                         }
-                        else if (B == true || C == true || D == true || E == true || A == true || G == true)
-                        {
-                            StartCoroutine("otherKey");
-                        }
                         else
                         {
-                            StartCoroutine("noKey");
+                            StartCoroutine("otherKey");
                         }
                         break;
 
@@ -421,13 +397,9 @@ public class player : MonoBehaviour
                         {
                             opendoor();
                         }
-                        else if (B == true || C == true || D == true || E == true || F == true || A == true)
-                        {
-                            StartCoroutine("otherKey");
-                        }
                         else
                         {
-                            StartCoroutine("noKey");
+                            StartCoroutine("otherKey");
                         }
                         break;
                 }
