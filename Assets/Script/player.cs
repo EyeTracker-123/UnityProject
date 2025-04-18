@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.UI;
 
 public class player : MonoBehaviour
 {
@@ -16,6 +19,9 @@ public class player : MonoBehaviour
     public bool dashflag = false;
     public GameObject[] stagePos;
     private int ii = 0;
+
+    public Text textObj;
+
     private void Awake()
     {
         // Player Input����InputAction���擾���܂�
@@ -66,6 +72,22 @@ public class player : MonoBehaviour
         }
     }*/
 
+    public bool isStairsend = false;
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Stairsend"))
+        {
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x,collision.transform.position.y+1.5f, gameObject.transform.position.z);
+
+        }
+    }
+
+   
+
+
+
 
     void LateUpdate()
     {
@@ -73,12 +95,12 @@ public class player : MonoBehaviour
         cam.transform.position = target.position + offset;
     }
     // ��ŏ��� public float x = 0.01f;
+
+    Rigidbody rb;
+    
     void Update()
     {
-        //����ŏ�������
-        //gameObject.transform.localPosition += _velocity * move_speed;
-        
-
+       
         _came.x += (_camera.x * cameraSpeed) * -1;
         _came.y += _camera.y * cameraSpeed;
 
@@ -126,13 +148,27 @@ public class player : MonoBehaviour
             }
         }
 
+       
+        //����ŏ�������
+        //gameObject.transform.localPosition += _velocity * move_speed;
         
+
     }
-    
+    Vector3 moveDirection;
+
+    public float speed = 3f;
+    public float gravity = 10f;
+    public float jumpSpeed = 5f;
+
+    float PlayerY;
+  
     void OnMove(InputValue value)
     {
+        
         var axis = value.Get<Vector2>();
-        _velocity = new Vector3(axis.x,0, axis.y);
+      
+            _velocity = new Vector3(axis.x, 0, axis.y);
+        
     }
     void OnLook(InputValue value)
     {
@@ -176,6 +212,7 @@ public class player : MonoBehaviour
         {            
             if(stamina > 0)
             {
+
                 //�X�^�~�i������Ȃ���ړ����x���グ��
                 ms = move_speed*2;
                 stamina -= 0.002f;
@@ -193,7 +230,206 @@ public class player : MonoBehaviour
         }
     }
 
-    
+    public float distance = 5.0f;
+
+    public bool A = false;
+    public bool B = false;
+    public bool C = false;
+    public bool D = false;
+    public bool E = false;
+    public bool F = false;
+    public bool G = false;
+    string tKey;
+    void OnFire()//アイテムやドア"など"のアクションはこの中で書く
+    {
+        RaycastHit hit;
+        
+
+        Vector3 direction = cam.transform.forward;
+        if (Physics.Raycast(cam.transform.position,direction,out hit, distance))
+        {
+            GameObject hitobj = hit.collider.gameObject;
+            if (hitobj.CompareTag("key"))
+            {
+                keyFlag kf = hitobj.GetComponent<keyFlag>();
+                string kn = kf.keyname;
+               
+                switch (kn)
+                {
+                    case "keyA":
+                        A = true;
+                        tKey = "A";
+                        hitobj.SetActive(false);
+                        StartCoroutine("getKey");
+                        break;
+
+                    case "keyB":
+                        B = true;
+                        tKey = "B";
+                        hitobj.SetActive(false);
+                        StartCoroutine("getKey");
+                        break;
+
+                    case "keyC":
+                        C = true;
+                        tKey = "C";
+                        hitobj.SetActive(false);
+                        StartCoroutine("getKey");
+                        break;
+
+                    case "keyD":
+                        D = true;
+                        tKey = "D";
+                        hitobj.SetActive(false);
+                        StartCoroutine("getKey");
+                        break;
+
+                    case "keyE":
+                        E = true;
+                        tKey = "E";
+                        hitobj.SetActive(false);
+                        StartCoroutine("getKey");
+                        break;
+
+                    case "keyF":
+                        F = true;
+                        tKey = "F";
+                        hitobj.SetActive(false);
+                        StartCoroutine("getKey");
+                        break;
+
+                    case "keyG":
+                        G = true;
+                        tKey = "G";
+                        hitobj.SetActive(false);
+                        StartCoroutine("getKey");
+                        break;
+                }
+            }
+            if (hitobj.CompareTag("keydoor"))
+            {
+                doorName dn = hitobj.GetComponent<doorName>();
+                string D_Number = dn.doorNumber;
+
+                void opendoor()
+                {
+                    hitobj.SetActive(false);//簡易的に非表示にしている
+                    StartCoroutine("noKey");
+                }
+
+                switch (D_Number)
+                {
+                    case "doorA":
+                        tKey = "A";
+                        if(A == true)
+                        {
+                            opendoor();
+                        }
+                        else
+                        {
+                            StartCoroutine("otherKey");
+                        }
+                        break;
+
+                    case "doorB":
+                        tKey = "B";
+                        if (B == true)
+                        {
+                            opendoor();
+                        }
+                        else
+                        {
+                            StartCoroutine("otherKey");
+                        }
+                        break;
+
+                    case "doorC":
+                        tKey = "C";
+                        if (C == true)
+                        {
+                            opendoor();
+                        }
+                        else
+                        {
+                            StartCoroutine("otherKey");
+                        }
+                        break;
+
+                    case "doorD":
+                        tKey = "D";
+                        if (D == true)
+                        {
+                            opendoor();
+                        }
+                        else
+                        {
+                            StartCoroutine("otherKey");
+                        }
+                        break;
+
+                    case "doorE":
+                        tKey = "E";
+                        if (E == true)
+                        {
+                            opendoor();
+                        }
+                        else
+                        {
+                            StartCoroutine("otherKey");
+                        }
+                        break;
+
+                    case "doorF":
+                        tKey = "F";
+                        if (F == true)
+                        {
+                            opendoor();
+                        }
+                        else
+                        {
+                            StartCoroutine("otherKey");
+                        }
+                        break;
+
+                    case "doorG":
+                        tKey = "G";
+                        if (G == true)
+                        {
+                            opendoor();
+                        }
+                        else
+                        {
+                            StartCoroutine("otherKey");
+                        }
+                        break;
+                }
+            }
+        }
+    }
+    IEnumerator otherKey()
+    {
+        Text textArea = textObj.GetComponent<Text>();
+        textArea.text = tKey+"の鍵が必要だ";
+        yield return new WaitForSeconds(5);
+        textArea.text = " ";
+        yield break;
+    }
+    IEnumerator noKey()
+    {
+        Text textArea = textObj.GetComponent<Text>();
+        textArea.text = tKey+"の鍵を使った";
+        yield return new WaitForSeconds(5);
+        textArea.text = " ";
+        yield break;
+    }
+    IEnumerator getKey() 
+    {
+        Text textArea = textObj.GetComponent<Text>();
+        textArea.text = tKey +"の鍵を手に入れた";
+        yield return new WaitForSeconds(4);
+        textArea.text = " ";
+        yield break;
+    }
 
 
 }

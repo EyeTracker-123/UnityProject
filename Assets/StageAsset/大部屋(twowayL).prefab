@@ -683,7 +683,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4849793092249066612}
-  - component: {fileID: 1853072804241501893}
   m_Layer: 0
   m_Name: "\u5927\u90E8\u5C4B(twowayL)"
   m_TagString: Untagged
@@ -712,18 +711,6 @@ Transform:
   - {fileID: 7047620215146284876}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1853072804241501893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5705531604484342251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3a0d2c544ff764bbae1f2916faa3a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6498597397882340336
 GameObject:
   m_ObjectHideFlags: 0

@@ -231,7 +231,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3047050938688343675}
-  - component: {fileID: 7236974157366017416}
   m_Layer: 0
   m_Name: "\u5927\u90E8\u5C4B(oneway)"
   m_TagString: Untagged

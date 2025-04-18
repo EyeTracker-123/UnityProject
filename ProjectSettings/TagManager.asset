@@ -7,6 +7,9 @@ TagManager:
   - stage
   - restricted
   - open
+  - key
+  - keydoor
+  - Stairsend
   layers:
   - Default
   - TransparentFX
