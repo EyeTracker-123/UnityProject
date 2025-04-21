@@ -53,6 +53,7 @@ public class player : MonoBehaviour
 
     public Camera cam;
     public float cameraSpeed = 5f;
+    public float rand;
     public Transform target;  
     private Vector3 offset = new Vector3(0,0,0);
     private float camera_x;
@@ -100,9 +101,9 @@ public class player : MonoBehaviour
     
     void Update()
     {
-       
-        _came.x += (_camera.x * cameraSpeed) * -1;
-        _came.y += _camera.y * cameraSpeed;
+        rand = UnityEngine.Random.Range(-1.0f,1.0f);
+        _came.x += ((_camera.x * cameraSpeed) * -1) + rand;
+        _came.y += _camera.y * cameraSpeed + rand;
 
         cam_forward = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z).normalized;
         cam_right = new Vector3(cam.transform.right.x, 0, cam.transform.right.z).normalized;
