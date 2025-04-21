@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -98,13 +99,13 @@ public class player : MonoBehaviour
     // ��ŏ��� public float x = 0.01f;
 
     Rigidbody rb;
-    
+    private int count;
+    public int doFrame;
     void Update()
     {
-        rand = UnityEngine.Random.Range(-1.0f,1.0f);
-        _came.x += ((_camera.x * cameraSpeed) * -1) + rand;
-        _came.y += _camera.y * cameraSpeed + rand;
-
+            _came.x = ((_came.x + _camera.x * cameraSpeed) * -1);
+            _came.y = (_came.y + _camera.y * cameraSpeed);
+        
         cam_forward = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z).normalized;
         cam_right = new Vector3(cam.transform.right.x, 0, cam.transform.right.z).normalized;
 
