@@ -74,6 +74,13 @@ public class GameManager : MonoBehaviour
       
     }
 
+    IEnumerator setMode(){
+        
+        yield return new WaitForSeconds(followTime);
+        enemy.SetActive(false);
+        isFollowing = false;
+    }
+
     void SetEnemyPosition(){
         gameObjects.Clear();
         
@@ -93,7 +100,7 @@ public class GameManager : MonoBehaviour
 
         enemy.SetActive(true);
 
-        appearPoint = new Vector3(furthestObject.transform.position.x, 1,furthestObject.transform.position.z);
+        appearPoint = new Vector3(furthestObject.transform.position.x, 1.4f,furthestObject.transform.position.z);
         agent.Warp(appearPoint);
 
     }
@@ -104,12 +111,7 @@ public class GameManager : MonoBehaviour
     void stopMusic(){
         
     }
-    IEnumerator setMode(){
-        
-        yield return new WaitForSeconds(followTime);
-        enemy.SetActive(false);
-        isFollowing = false;
-    }
+    
     
         //すべてのオブジェクトを取得＞”大部屋”が含まれるオブジェクトを抽出＞配列に変換
         //gameObjects = FindObjectsOfType<GameObject>(true).Where(obj => obj.name.Contains("大部屋(")).ToList();

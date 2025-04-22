@@ -13,13 +13,16 @@ public class EnemyController : MonoBehaviour
     private Transform player;
 
     [SerializeField]
-    private AudioSource audioSource;
-    [SerializeField]
-    private AudioClip audioClip;
+    private searchController searchTrigger;
+
+    private float searchWaitTime = 1.5f;
 
     private bool isWaiting = false;
 
+   
     void Start(){
+        searchTrigger.OnTriggerEntered += SetKillMode;
+        searchTrigger.OnTriggerExited += OutKillMode;
         gameObject.SetActive(false);
 
     }
@@ -40,10 +43,9 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
        
-        //追跡中の動作
         if (agent.isOnNavMesh)
         {
-            //agent.isStopped = false;
+
             // プレイヤーの位置に向かって移動
                 if (isWaiting == false)
                 {
@@ -56,20 +58,39 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-        
-            //agent.isStopped = true; // 停止
-            Debug.Log("停止中");
+          Debug.Log("Navmeshに乗ってない");
         }
 
     }
 
+    void SetKillMode(Collider other){
+        if (other.CompareTag("Player"))
+        {
+            // 移動速度を設定
+            agent.speed = 30.0f; // 単位: メートル/秒
 
+            // 旋回速度を設定
+            agent.angularSpeed = 720.0f; // 単位: 度/秒
+
+            searchWaitTime = 0f;
+        }
+        
+    }
+
+    void OutKillMode(Collider other){
+
+        agent.speed = 3.5f;
+
+        agent.angularSpeed = 120.0f;
+
+        searchWaitTime = 1.5f;
+    }
 
     IEnumerator searchWait(){
         
         agent.SetDestination(player.position);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(searchWaitTime);
         isWaiting = false;
 
     }
