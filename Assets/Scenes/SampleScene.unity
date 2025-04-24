@@ -1083,6 +1083,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 102295147}
+  - component: {fileID: 102295148}
   m_Layer: 0
   m_Name: stages
   m_TagString: Untagged
@@ -1269,6 +1270,23 @@ Transform:
   - {fileID: 927453176}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &102295148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102295146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38def0b30be479f4a918397ba23e5744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  agent: {fileID: 0}
+  Playertf: {fileID: 0}
+  moveThreshold: 0
+  followTime: 0
 --- !u!1001 &107309983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9081,7 +9099,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6907631340003772284, guid: 089b8a9b2a0897242bc8240f9f2a0064,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1020143110}
+      addedObject: {fileID: 1020143114}
+    - targetCorrespondingSourceObject: {fileID: 763247878748017564, guid: 089b8a9b2a0897242bc8240f9f2a0064,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1237536139}
   m_SourcePrefab: {fileID: 100100000, guid: 089b8a9b2a0897242bc8240f9f2a0064, type: 3}
 --- !u!82 &1020143107 stripped
 AudioSource:
@@ -9089,7 +9111,13 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 1020143106}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1020143110
+--- !u!195 &1020143109 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 8596072797119537019, guid: 089b8a9b2a0897242bc8240f9f2a0064,
+    type: 3}
+  m_PrefabInstance: {fileID: 1020143106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1020143114
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9101,6 +9129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20fedae816e58d54d826c270863cce77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 1020143109}
+  player: {fileID: 3721016517450631697}
+  searchTrigger: {fileID: 1237536139}
 --- !u!1001 &1023214263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10471,6 +10502,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38def0b30be479f4a918397ba23e5744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 419087470}
+  agent: {fileID: 1020143109}
+  Playertf: {fileID: 3721016517450631697}
+  moveThreshold: 20
+  followTime: 10
 --- !u!1001 &1202275877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10807,6 +10843,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1237509735}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1237536133 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 763247878748017564, guid: 089b8a9b2a0897242bc8240f9f2a0064,
+    type: 3}
+  m_PrefabInstance: {fileID: 1020143106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1237536139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237536133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac6071578c629549bee8133aaa387f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1237696497
 GameObject:
   m_ObjectHideFlags: 0
