@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9052,6 +9052,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy3
       objectReference: {fileID: 0}
+    - target: {fileID: 6907631340003772284, guid: 089b8a9b2a0897242bc8240f9f2a0064,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7149706545669020067, guid: 089b8a9b2a0897242bc8240f9f2a0064,
         type: 3}
       propertyPath: player
@@ -9077,20 +9082,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1020143110}
-    - targetCorrespondingSourceObject: {fileID: 763247878748017564, guid: 089b8a9b2a0897242bc8240f9f2a0064,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1237536135}
   m_SourcePrefab: {fileID: 100100000, guid: 089b8a9b2a0897242bc8240f9f2a0064, type: 3}
 --- !u!82 &1020143107 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 4527021865638209881, guid: 089b8a9b2a0897242bc8240f9f2a0064,
-    type: 3}
-  m_PrefabInstance: {fileID: 1020143106}
-  m_PrefabAsset: {fileID: 0}
---- !u!195 &1020143109 stripped
-NavMeshAgent:
-  m_CorrespondingSourceObject: {fileID: 8596072797119537019, guid: 089b8a9b2a0897242bc8240f9f2a0064,
     type: 3}
   m_PrefabInstance: {fileID: 1020143106}
   m_PrefabAsset: {fileID: 0}
@@ -9106,9 +9101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20fedae816e58d54d826c270863cce77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 1020143109}
-  player: {fileID: 3721016517450631697}
-  searchTrigger: {fileID: 1237536135}
 --- !u!1001 &1023214263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9463,6 +9455,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 197239455}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1076556246 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1133622860668422759, guid: 3a8a18aef52fd9941aec53362731fb11,
+    type: 3}
+  m_PrefabInstance: {fileID: 1314041411}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1076556247
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076556246}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d587b031695e6734888ed860f37f6cbc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1079166214
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10452,11 +10471,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38def0b30be479f4a918397ba23e5744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 419087470}
-  agent: {fileID: 1020143109}
-  Playertf: {fileID: 3721016517450631697}
-  moveThreshold: 20
-  followTime: 10
 --- !u!1001 &1202275877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10793,24 +10807,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1237509735}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1237536133 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 763247878748017564, guid: 089b8a9b2a0897242bc8240f9f2a0064,
-    type: 3}
-  m_PrefabInstance: {fileID: 1020143106}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1237536135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237536133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d82a6c2e74e60d40b17a421bb38457b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1237696497
 GameObject:
   m_ObjectHideFlags: 0
@@ -11043,7 +11039,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1133622860668422759, guid: 3a8a18aef52fd9941aec53362731fb11,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1076556247}
   m_SourcePrefab: {fileID: 100100000, guid: 3a8a18aef52fd9941aec53362731fb11, type: 3}
 --- !u!1 &1316889273
 GameObject:
@@ -19774,7 +19774,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d836a1e18c5e8d340933eaf719f3f8a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_speed: 0.06
+  door_animator: {fileID: 1076556247}
+  move_speed: 0.02
   stamina: 1
   dashflag: 0
   stagePos:

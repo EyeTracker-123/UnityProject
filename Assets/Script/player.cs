@@ -11,6 +11,7 @@ using UnityEngine.UI;
 
 public class player : MonoBehaviour
 {
+    public Animator door_animator;
     Vector3 _velocity;
     Vector3 _camera;
     public float move_speed;
@@ -24,6 +25,7 @@ public class player : MonoBehaviour
 
     private void Awake()
     {
+
         // Player Input����InputAction���擾���܂�
         var playerInput = GetComponent<PlayerInput>();
         holdAction = playerInput.actions["Run"];
@@ -313,7 +315,8 @@ public class player : MonoBehaviour
 
                 void opendoor()
                 {
-                    hitobj.SetActive(false);//簡易的に非表示にしている
+                    door_animator.SetBool("isOpening", true);
+                    //hitobj.SetActive(false);//簡易的に非表示にしている
                     StartCoroutine("noKey");
                 }
 
