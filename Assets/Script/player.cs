@@ -437,10 +437,10 @@ public class player : MonoBehaviour
     IEnumerator waitanime()
     {
         door_animation = hitobj.GetComponent<Animator>();
-        Debug.Log("アニメーション開始");
+        
         door_animation.SetBool("isOpening", true);
         yield return new WaitForSeconds(2);
-        Debug.Log("非表示");
+       
         hitobj.SetActive(false);//簡易的に非表示にしている
 
     }

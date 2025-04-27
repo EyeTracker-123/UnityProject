@@ -32,6 +32,14 @@ public class EnemyController : MonoBehaviour
         //audioSource.PlayOneShot(audioClip);
 
     }
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("playerに衝突した"); 
+        }
+        
+    }
     void OnDisable()
     {
         //audioSource.Stop();
