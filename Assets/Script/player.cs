@@ -20,7 +20,7 @@ public class player : MonoBehaviour
     public bool dashflag = false;
     public GameObject[] stagePos;
     private int ii = 0;
-
+    public Rigidbody rb;
     public Text textObj;
 
     private void Awake()
@@ -28,6 +28,8 @@ public class player : MonoBehaviour
         // Player Input����InputAction���擾���܂�
         var playerInput = GetComponent<PlayerInput>();
         holdAction = playerInput.actions["Run"];
+
+        
 
         // �{�^����������n�߂����Ɨ����ꂽ���ɃC�x���g��o�^���܂�
         holdAction.started += OnHoldStarted;
@@ -75,7 +77,9 @@ public class player : MonoBehaviour
     }*/
 
     public bool isStairsend = false;
+    
 
+    
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -97,8 +101,10 @@ public class player : MonoBehaviour
         cam.transform.position = target.position + offset;
     }
     // ��ŏ��� public float x = 0.01f;
-
-    Rigidbody rb;
+    void Start()
+    {
+        rb = gameObject.GetComponent<Rigidbody>();
+    }
     private int count;
     public int doFrame;
     void Update()
@@ -109,8 +115,8 @@ public class player : MonoBehaviour
         cam_forward = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z).normalized;
         cam_right = new Vector3(cam.transform.right.x, 0, cam.transform.right.z).normalized;
 
-        gameObject.transform.localPosition += (cam_right * _velocity.x + cam_forward * _velocity.z) * ms;
-
+        // 旧移動スクリプト[Old move] gameObject.transform.localPosition += (cam_right * _velocity.x + cam_forward * _velocity.z) * ms;
+        rb.velocity = (cam_right * _velocity.x * (ms) + cam_forward * _velocity.z * ms);
         //����U�ۗ�
         //_came.x = Mathf.Clamp(_came.x, -90, 90);
         // _came.y = Mathf.Clamp(_came.y, -90, 90);
