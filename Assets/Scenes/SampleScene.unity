@@ -9135,6 +9135,26 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1020143107}
+    - target: {fileID: 7290370543917254661, guid: 089b8a9b2a0897242bc8240f9f2a0064,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290370543917254661, guid: 089b8a9b2a0897242bc8240f9f2a0064,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8596072797119537019, guid: 089b8a9b2a0897242bc8240f9f2a0064,
+        type: 3}
+      propertyPath: m_Radius
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8596072797119537019, guid: 089b8a9b2a0897242bc8240f9f2a0064,
+        type: 3}
+      propertyPath: m_ObstacleAvoidanceType
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8745410944003797642, guid: 089b8a9b2a0897242bc8240f9f2a0064, type: 3}
     - {fileID: 7149706545669020067, guid: 089b8a9b2a0897242bc8240f9f2a0064, type: 3}
@@ -9175,8 +9195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1020143109}
-  player: {fileID: 3721016517450631697}
   searchTrigger: {fileID: 1237536139}
+  searchWaitTime: 0.1
 --- !u!1001 &1023214263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10550,8 +10570,8 @@ MonoBehaviour:
   enemy: {fileID: 419087470}
   agent: {fileID: 1020143109}
   Playertf: {fileID: 3721016517450631697}
-  moveThreshold: 20
-  followTime: 20
+  moveThreshold: 10
+  followTime: 10
 --- !u!1001 &1202275877
 PrefabInstance:
   m_ObjectHideFlags: 0
