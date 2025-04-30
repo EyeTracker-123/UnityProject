@@ -104,13 +104,7 @@ public class GameManager : MonoBehaviour
         agent.Warp(appearPoint);
 
     }
-    void startMusic(){
-
-    }
-
-    void stopMusic(){
-        
-    }
+    
     
     
         //すべてのオブジェクトを取得＞”大部屋”が含まれるオブジェクトを抽出＞配列に変換
