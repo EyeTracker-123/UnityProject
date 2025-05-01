@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     private searchController searchTrigger;
     
     private GameObject gameManager;
+    private Animator animator;
     private Camera camera;
     private GameObject eye;
     private GameManager gameManagerScript;
@@ -34,6 +35,7 @@ public class EnemyController : MonoBehaviour
         searchTrigger.OnTriggerExited += OutKillMode;
 
         eye = GameObject.Find("目玉");
+        animator = GetComponent<Animator>();
         gameManager = GameObject.Find("GameManager");
         player = GameObject.Find("player");
         //mainCameraの取得
@@ -53,7 +55,7 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    void OnCollisionEnter(Collision collision) {
+    /*void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.CompareTag("Player")) // プレイヤーに当たったら
         {
             
@@ -65,12 +67,13 @@ public class EnemyController : MonoBehaviour
             player.SetActive(false);
             
             isTouched = true;
+            
             //player（カメラ）の座標を正面にする
             camera.transform.LookAt(eye.transform);
 
             Debug.Log("playerに触れました");
         }
-    }   
+    }   */
     /// <summary>
     /// 移動量が一定量超えたら追いかけモードに変更
     /// 追いかけモードは一定時間で解除
@@ -82,10 +85,7 @@ public class EnemyController : MonoBehaviour
         {
 
             // プレイヤーの位置に向かって移動
-            if(isTouched == true)
-            {
-
-            }
+            checkDistance();
             if (isWaiting == false)
             {
                     
@@ -116,6 +116,37 @@ public class EnemyController : MonoBehaviour
         
     }
 
+    void checkDistance()
+    {
+        float diffX = Mathf.Abs(transform.position.x - player.transform.position.x);
+        float diffZ = Mathf.Abs(transform.position.z - player.transform.position.z);
+        float totalDiff = diffX + diffZ;
+
+        if (totalDiff < 5f)
+        {
+            Debug.Log("xとzの差分の合計が5を下回りました");
+            
+            // スクリプトを無効化（非アクティブ化）
+            //gameManagerScript.enabled = false;
+            //敵のリスポーンを防ぐ
+            gameManager.SetActive(false);
+            //カメラとプレイヤーを動かせない様にする
+            player.SetActive(false);
+            
+            isTouched = true;
+            
+            //player（カメラ）の座標を正面にする
+            camera.transform.LookAt(eye.transform);
+
+            //Debug.Log("playerに触れました");
+            animator.SetBool("isGeting",true);
+        
+
+            agent.isStopped = true;
+            
+        }
+    }
+
     void OutKillMode(Collider other){
 
         agent.speed = 3.5f;
@@ -129,7 +160,8 @@ public class EnemyController : MonoBehaviour
         //プレイヤーに触れたら追跡を辞める
         if(isTouched == true)
         {
-            agent.speed = 0;
+            Debug.Log("speed0");
+            agent.SetDestination(transform.position);
             // 目的地をリセットして止める
             //agent.ResetPath();
             yield break;
