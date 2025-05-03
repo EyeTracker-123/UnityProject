@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,6 +16,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private searchController searchTrigger;
     
+    [SerializeField]
+    private CinemachineVirtualCamera virtualCamera;
     private GameObject gameManager;
     private Animator animator;
     private Camera camera;
@@ -23,36 +26,43 @@ public class EnemyController : MonoBehaviour
     
     [SerializeField]
     private float searchWaitTime = 1.5f;
+    [SerializeField]
+    private float zoomFOV = 30f;
+    [SerializeField]
+    private float zoomSpeed = 1.5f;
+
 
     private bool isWaiting = false;
 
     private bool isTouched = false;
 
-   
+    void Awake()
+    {
+        
+    }
     void Start(){
-        //searchTriggerに触れた際と出て行った時に関数が起動するように設定している
+        //searchTriggerに触れた際と出て行った時に関数が起動するように設定
         searchTrigger.OnTriggerEntered += SetKillMode;
         searchTrigger.OnTriggerExited += OutKillMode;
 
+        //virtualCamera  = transform.Find("VirtualCamera").GetComponent<CinemachineVirtualCamera>();
+        //virtualCamera.gameObject.SetActive(false);
         eye = GameObject.Find("目玉");
         animator = GetComponent<Animator>();
         gameManager = GameObject.Find("GameManager");
         player = GameObject.Find("player");
         //mainCameraの取得
         camera = Camera.main;
-        // オブジェクトからスクリプト（コンポーネント）を取得
-        //gameManagerScript = gameManager.GetComponent<GameManager>();
-
-            
         
+        
+        //フラグが立つまで非表示
         gameObject.SetActive(false);
 
     }
      void OnEnable()
     {
+        //有効時に追跡フラグを立てる
         isWaiting = false;
-        //audioSource.PlayOneShot(audioClip);
-
     }
 
     /*void OnCollisionEnter(Collision collision) {
@@ -118,6 +128,7 @@ public class EnemyController : MonoBehaviour
 
     void checkDistance()
     {
+        //ｘ、ｚの差分の合計を計算（Mathf.Absは絶対値に変換）
         float diffX = Mathf.Abs(transform.position.x - player.transform.position.x);
         float diffZ = Mathf.Abs(transform.position.z - player.transform.position.z);
         float totalDiff = diffX + diffZ;
@@ -126,19 +137,26 @@ public class EnemyController : MonoBehaviour
         {
             Debug.Log("xとzの差分の合計が5を下回りました");
             
-            // スクリプトを無効化（非アクティブ化）
-            //gameManagerScript.enabled = false;
-            //敵のリスポーンを防ぐ
+            
+            //gameManagerを停止させて敵のリスポーンを防ぐ
             gameManager.SetActive(false);
+
             //カメラとプレイヤーを動かせない様にする
             player.SetActive(false);
-            
-            isTouched = true;
-            
-            //player（カメラ）の座標を正面にする
-            camera.transform.LookAt(eye.transform);
 
-            //Debug.Log("playerに触れました");
+            //virtualCameraがついているgameObjectを有効化
+            virtualCamera.gameObject.SetActive(true);
+
+            //追跡処理を停止させる
+            isTouched = true;
+
+            //Mathf.Lerp （現在、目的値、移動にかかる時間）time.deltaTimeはfpsに依存させないようにするおまじない
+            virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, zoomFOV, Time.deltaTime * zoomSpeed);
+            //virtualCamera.Priority = 20;
+            //player（カメラ）の座標を正面にする
+            //camera.transform.LookAt(eye.transform);
+
+            //捕縛アニメーション実行
             animator.SetBool("isGeting",true);
         
 
