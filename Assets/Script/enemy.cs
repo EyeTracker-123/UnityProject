@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+
 
 public class EnemyController : MonoBehaviour
 {
@@ -19,8 +21,9 @@ public class EnemyController : MonoBehaviour
     
     [SerializeField]
     private CinemachineVirtualCamera virtualCamera;
+    
     [SerializeField]
-    private Image backimage;
+    private RawImage backimage;
     Color currentColor;
     private GameObject gameManager;
     private Animator animator;
@@ -37,6 +40,8 @@ public class EnemyController : MonoBehaviour
     private float zoomSpeed = 1.5f;
     [SerializeField]
     private float fadeBackgroundSpeed = 1;
+    [SerializeField]
+    ui ui;
     private bool isWaiting = false;
 
     private bool isTouched = false;
@@ -58,10 +63,8 @@ public class EnemyController : MonoBehaviour
         player = GameObject.Find("player");
         //mainCameraの取得
         camera = Camera.main;
-
-        currentColor = backimage.color;
-        currentColor.a = 0;
-        backimage.color = currentColor;
+                 
+       ui.FadeTo(0f,1f);
         
         //フラグが立つまで非表示
         gameObject.SetActive(false);
@@ -163,44 +166,32 @@ public class EnemyController : MonoBehaviour
         }
         else if(totalDiff < 30.0f)
         {
-            FadeIn(3f);
+           
+            ui.FadeTo(1f,2f);
+
+            //float alpha = 1.0f;
+            
             /*float newAlpha = Mathf.Lerp(currentColor.a, targetAlpha, Time.deltaTime * (targetAlpha / 10));
             Debug.Log(newAlpha);
             backimage.color = new Color(currentColor.r, currentColor.g, currentColor.b, newAlpha);*/
         }
     }
-    private IEnumerator ChangeAlphaValueFrom0To1OverTime( 
-    float   duration, 
-    Action  on_completed, 
-    bool    is_reversing = false 
-) {
-    if ( !is_reversing ) backimage.enabled = true;
 
-    var elapsed_time    = 0.0f;
-    var color           = backimage.color;
-
-    while ( elapsed_time < duration )
+    private IEnumerator FadeAlphaCoroutine(float targetAlpha, float duration)
     {
-        var elapsed_rate    = Mathf.Min( elapsed_time / duration, 1.0f );
-        color.a             = is_reversing ? 1.0f - elapsed_rate : elapsed_rate;
-        backimage.color       = color;
-        
-        yield return null;
-        elapsed_time += Time.deltaTime;
-    }
+        Color currentColor = backimage.color;
+        float startAlpha = currentColor.a;
+        float time = 0f;
 
-    if ( is_reversing )         backimage.enabled = false;
-    if ( on_completed != null ) on_completed();
-    }
+        while (time < duration)
+        {
+            float alpha = Mathf.Lerp(startAlpha, targetAlpha, time / duration);
+            backimage.color = new Color(currentColor.r, currentColor.g, currentColor.b, alpha);
+            time += Time.deltaTime;
+            yield return null;
+        }
 
-    public void FadeIn( float duration, Action on_completed = null ) 
-    {
-        StartCoroutine( ChangeAlphaValueFrom0To1OverTime( duration, on_completed, true ) );
-    }
-
-    public void FadeOut( float duration, Action on_completed = null ) 
-    {
-        StartCoroutine( ChangeAlphaValueFrom0To1OverTime( duration, on_completed ) );
+        backimage.color = new Color(currentColor.r, currentColor.g, currentColor.b, targetAlpha);
     }
     void OutKillMode(Collider other){
 
