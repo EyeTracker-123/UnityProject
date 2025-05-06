@@ -1083,7 +1083,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 102295147}
-  - component: {fileID: 102295148}
   m_Layer: 0
   m_Name: stages
   m_TagString: Untagged
@@ -1270,23 +1269,6 @@ Transform:
   - {fileID: 927453176}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &102295148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 102295146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38def0b30be479f4a918397ba23e5744, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
-  agent: {fileID: 0}
-  Playertf: {fileID: 0}
-  moveThreshold: 0
-  followTime: 0
 --- !u!1001 &107309983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9103,6 +9085,11 @@ PrefabInstance:
     - target: {fileID: 349697421314118489, guid: 089b8a9b2a0897242bc8240f9f2a0064,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527021865638209881, guid: 089b8a9b2a0897242bc8240f9f2a0064,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4527021865638209881, guid: 089b8a9b2a0897242bc8240f9f2a0064,
