@@ -10,6 +10,9 @@ using System;
 
 public class TETConnect : MonoBehaviour
 {
+
+
+
     //データ格納用クラス
     [System.Serializable]
     public class raw
@@ -89,7 +92,7 @@ public class TETConnect : MonoBehaviour
 
 
     public TETData TET;
-    
+
 
 
 
