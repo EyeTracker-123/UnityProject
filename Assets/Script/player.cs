@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -54,7 +55,7 @@ public class player : MonoBehaviour
         //Debug.Log(stagePos.Length);
     }
 
-    public Camera cam;
+    public CinemachineVirtualCamera cam;
     public float cameraSpeed = 5f;
     public Transform target;  
     private Vector3 offset = new Vector3(0,0,0);

@@ -3,6 +3,7 @@ using System.Collections;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -18,20 +19,24 @@ public class EnemyController : MonoBehaviour
     
     [SerializeField]
     private CinemachineVirtualCamera virtualCamera;
+    [SerializeField]
+    private Image backimage;
+    Color currentColor;
     private GameObject gameManager;
     private Animator animator;
     private Camera camera;
     private GameObject eye;
     private GameManager gameManagerScript;
-    
+    [SerializeField]
+    int targetAlpha = 0;
     [SerializeField]
     private float searchWaitTime = 1.5f;
     [SerializeField]
-    private float zoomFOV = 30f;
+    private float zoomFOV = 5f;
     [SerializeField]
     private float zoomSpeed = 1.5f;
-
-
+    [SerializeField]
+    private float fadeBackgroundSpeed = 1;
     private bool isWaiting = false;
 
     private bool isTouched = false;
@@ -53,37 +58,25 @@ public class EnemyController : MonoBehaviour
         player = GameObject.Find("player");
         //mainCameraの取得
         camera = Camera.main;
-        
+
+        currentColor = backimage.color;
+        currentColor.a = 0;
+        backimage.color = currentColor;
         
         //フラグが立つまで非表示
         gameObject.SetActive(false);
 
     }
+    
+        //backimage.color = new Color(c.r, c.g, c.b, alpha);
+
      void OnEnable()
     {
         //有効時に追跡フラグを立てる
         isWaiting = false;
     }
 
-    /*void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.CompareTag("Player")) // プレイヤーに当たったら
-        {
-            
-            // スクリプトを無効化（非アクティブ化）
-            //gameManagerScript.enabled = false;
-            //敵のリスポーンを防ぐ
-            gameManager.SetActive(false);
-            //カメラとプレイヤーを動かせない様にする
-            player.SetActive(false);
-            
-            isTouched = true;
-            
-            //player（カメラ）の座標を正面にする
-            camera.transform.LookAt(eye.transform);
-
-            Debug.Log("playerに触れました");
-        }
-    }   */
+    
     /// <summary>
     /// 移動量が一定量超えたら追いかけモードに変更
     /// 追いかけモードは一定時間で解除
@@ -96,6 +89,7 @@ public class EnemyController : MonoBehaviour
 
             // プレイヤーの位置に向かって移動
             checkDistance();
+
             if (isWaiting == false)
             {
                     
@@ -110,6 +104,9 @@ public class EnemyController : MonoBehaviour
           Debug.Log("Navmeshに乗ってない");
         }
 
+        
+
+        
     }
 
     void SetKillMode(Collider other){
@@ -145,7 +142,8 @@ public class EnemyController : MonoBehaviour
             player.SetActive(false);
 
             //virtualCameraがついているgameObjectを有効化
-            virtualCamera.gameObject.SetActive(true);
+            //virtualCamera.gameObject.SetActive(true);
+            virtualCamera.Priority = 20;
 
             //追跡処理を停止させる
             isTouched = true;
@@ -163,8 +161,47 @@ public class EnemyController : MonoBehaviour
             agent.isStopped = true;
             
         }
+        else if(totalDiff < 30.0f)
+        {
+            FadeIn(3f);
+            /*float newAlpha = Mathf.Lerp(currentColor.a, targetAlpha, Time.deltaTime * (targetAlpha / 10));
+            Debug.Log(newAlpha);
+            backimage.color = new Color(currentColor.r, currentColor.g, currentColor.b, newAlpha);*/
+        }
+    }
+    private IEnumerator ChangeAlphaValueFrom0To1OverTime( 
+    float   duration, 
+    Action  on_completed, 
+    bool    is_reversing = false 
+) {
+    if ( !is_reversing ) backimage.enabled = true;
+
+    var elapsed_time    = 0.0f;
+    var color           = backimage.color;
+
+    while ( elapsed_time < duration )
+    {
+        var elapsed_rate    = Mathf.Min( elapsed_time / duration, 1.0f );
+        color.a             = is_reversing ? 1.0f - elapsed_rate : elapsed_rate;
+        backimage.color       = color;
+        
+        yield return null;
+        elapsed_time += Time.deltaTime;
     }
 
+    if ( is_reversing )         backimage.enabled = false;
+    if ( on_completed != null ) on_completed();
+    }
+
+    public void FadeIn( float duration, Action on_completed = null ) 
+    {
+        StartCoroutine( ChangeAlphaValueFrom0To1OverTime( duration, on_completed, true ) );
+    }
+
+    public void FadeOut( float duration, Action on_completed = null ) 
+    {
+        StartCoroutine( ChangeAlphaValueFrom0To1OverTime( duration, on_completed ) );
+    }
     void OutKillMode(Collider other){
 
         agent.speed = 3.5f;
