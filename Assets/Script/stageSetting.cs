@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,8 +14,6 @@ public class stageSetting : MonoBehaviour
 
         objectPos = gameObject.transform.position.x * gameObject.transform.position.x
             + gameObject.transform.position.z * gameObject.transform.position.z;
-        playerPos = playerObj.transform.position.x * playerObj.transform.position.x
-            + playerObj.transform.position.z * playerObj.transform.position.z;
     }
     private void Update()
     {
@@ -42,4 +40,4 @@ public class stageSetting : MonoBehaviour
 
         yield return new WaitForSeconds(2);
     }
-}
+}*/

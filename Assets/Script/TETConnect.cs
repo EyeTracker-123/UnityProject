@@ -10,6 +10,9 @@ using System;
 
 public class TETConnect : MonoBehaviour
 {
+
+
+
     //データ格納用クラス
     [System.Serializable]
     public class raw
@@ -88,8 +91,8 @@ public class TETConnect : MonoBehaviour
     private byte[] buffer;
 
 
-    public TETData TET = new TETData();
-    
+    public TETData TET;
+
 
 
 

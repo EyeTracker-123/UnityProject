@@ -10,8 +10,11 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
 
+
 public class player : MonoBehaviour
 {
+    private Animator door_animation;
+    private GameObject hitobj;
     Vector3 _velocity;
     Vector3 _camera;
     public float move_speed;
@@ -256,7 +259,7 @@ public class player : MonoBehaviour
         Vector3 direction = cam.transform.forward;
         if (Physics.Raycast(cam.transform.position,direction,out hit, distance))
         {
-            GameObject hitobj = hit.collider.gameObject;
+            hitobj = hit.collider.gameObject;
             if (hitobj.CompareTag("key"))
             {
                 keyFlag kf = hitobj.GetComponent<keyFlag>();
@@ -321,8 +324,9 @@ public class player : MonoBehaviour
 
                 void opendoor()
                 {
-                    hitobj.SetActive(false);//簡易的に非表示にしている
                     StartCoroutine("noKey");
+                    //アニメーションが終わるまで待機
+                    StartCoroutine("waitanime");
                 }
 
                 switch (D_Number)
@@ -438,7 +442,16 @@ public class player : MonoBehaviour
         textArea.text = " ";
         yield break;
     }
+    IEnumerator waitanime()
+    {
+        door_animation = hitobj.GetComponent<Animator>();
+        Debug.Log("アニメーション開始");
+        door_animation.SetBool("isOpening", true);
+        yield return new WaitForSeconds(2);
+        Debug.Log("非表示");
+        hitobj.SetActive(false);//簡易的に非表示にしている
 
+    }
 
 }
 

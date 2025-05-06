@@ -5,6 +5,8 @@ using UnityEngine;
 public class CatchEyeDate : MonoBehaviour
 {
     public TETConnect eyeTracker;
+
+    public bool cate = false;
     
     // Start is called before the first frame update
     void Start()
@@ -15,7 +17,7 @@ public class CatchEyeDate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool cate = eyeTracker.TET.values.frame.fix;
-        Debug.Log(cate);
+        cate = eyeTracker.TET.values.frame.fix;
+        //Debug.Log(cate);
     }
 }
