@@ -103,6 +103,7 @@ public class player : MonoBehaviour
     
     void Update()
     {
+        Vector3 horizontal = new Vector3(0,0,0);
        
         _came.x += (_camera.x * cameraSpeed) * -1;
         _came.y += _camera.y * cameraSpeed;
@@ -110,10 +111,11 @@ public class player : MonoBehaviour
         cam_forward = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z).normalized;
         cam_right = new Vector3(cam.transform.right.x, 0, cam.transform.right.z).normalized;
 
-        rb.velocity = (cam_right * _velocity.x * ms + cam_forward * _velocity.y * ms);
+        horizontal += (cam_right * _velocity.x + cam_forward * _velocity.z) * ms;
+        rb.velocity = new Vector3(horizontal.x , rb.velocity.y ,horizontal.z); 
         //gameObject.transform.localPosition += (cam_right * _velocity.x + cam_forward * _velocity.z) * ms;
-
-        //����U�ۗ�
+        //rb.MovePosition(horizontal);
+        Debug.Log(rb.velocity.y);
         //_came.x = Mathf.Clamp(_came.x, -90, 90);
         // _came.y = Mathf.Clamp(_came.y, -90, 90);
 

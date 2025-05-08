@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
            
             playerMoveAmount += Math.Abs((int)Math.Round(pyPosition.x) - (int)Math.Round(tempPosition.x));
             playerMoveAmount += Math.Abs((int)Math.Round(pyPosition.z) - (int)Math.Round(tempPosition.z));
-            Debug.Log(playerMoveAmount);
+//            Debug.Log(playerMoveAmount);
         }
 
          tempPosition = Playertf.position;
