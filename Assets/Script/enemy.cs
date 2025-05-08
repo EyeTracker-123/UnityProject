@@ -1,16 +1,19 @@
 using System;
 using System.Collections;
 using Cinemachine;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
     private NavMeshAgent agent;
+
 
     //追いかける対象
 
@@ -31,7 +34,7 @@ public class EnemyController : MonoBehaviour
     private GameObject eye;
     private GameManager gameManagerScript;
     [SerializeField]
-    int targetAlpha = 0;
+    int fadeBackgroundSpeed = 0;
     [SerializeField]
     private float searchWaitTime = 1.5f;
     [SerializeField]
@@ -39,12 +42,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private float zoomSpeed = 1.5f;
     [SerializeField]
-    private float fadeBackgroundSpeed = 1;
-    [SerializeField]
-    ui ui;
+    private float alpha = 0;
+    
     private bool isWaiting = false;
 
     private bool isTouched = false;
+
+    Color backgroundColor;
 
     void Awake()
     {
@@ -63,8 +67,12 @@ public class EnemyController : MonoBehaviour
         player = GameObject.Find("player");
         //mainCameraの取得
         camera = Camera.main;
+
+        backgroundColor = backimage.color;
+        backimage.color = new Color(backgroundColor.r, backgroundColor.g, backgroundColor.b, alpha);
+        Debug.Log(backimage.color);
                  
-       ui.FadeTo(0f,1f);
+       //ui.FadeTo(0f,1f);
         
         //フラグが立つまで非表示
         gameObject.SetActive(false);
@@ -133,7 +141,7 @@ public class EnemyController : MonoBehaviour
         float diffZ = Mathf.Abs(transform.position.z - player.transform.position.z);
         float totalDiff = diffX + diffZ;
 
-        if (totalDiff < 5f)
+        if (totalDiff < 3f)
         {
             Debug.Log("xとzの差分の合計が5を下回りました");
             
@@ -144,6 +152,8 @@ public class EnemyController : MonoBehaviour
             //カメラとプレイヤーを動かせない様にする
             player.SetActive(false);
 
+            //背景を非表示
+            backimage.color = new Color(backgroundColor.r, backgroundColor.g, backgroundColor.b, 0);
             //virtualCameraがついているgameObjectを有効化
             //virtualCamera.gameObject.SetActive(true);
             virtualCamera.Priority = 20;
@@ -151,33 +161,60 @@ public class EnemyController : MonoBehaviour
             //追跡処理を停止させる
             isTouched = true;
 
+            //捕縛アニメーション実行
+            animator.SetBool("isGeting",true);
+
+            StartCoroutine(wait());
             //Mathf.Lerp （現在、目的値、移動にかかる時間）time.deltaTimeはfpsに依存させないようにするおまじない
-            virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, zoomFOV, Time.deltaTime * zoomSpeed);
+            //virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, zoomFOV, Time.deltaTime * zoomSpeed);
             //virtualCamera.Priority = 20;
             //player（カメラ）の座標を正面にする
             //camera.transform.LookAt(eye.transform);
 
-            //捕縛アニメーション実行
-            animator.SetBool("isGeting",true);
+
         
 
             agent.isStopped = true;
+
+
             
         }
         else if(totalDiff < 30.0f)
         {
-           
-            ui.FadeTo(1f,2f);
+            
+
+            //alphaを更新することでLerpが取る値が少しずつ目的値（今回は１）に近づける
+            alpha = Mathf.Lerp(alpha,1,Time.deltaTime * fadeBackgroundSpeed);
+            backimage.color = new Color(backgroundColor.r, backgroundColor.g, backgroundColor.b, alpha);
+
+            Debug.Log(backimage.color);
+            //ui.FadeTo(1f,2f);
 
             //float alpha = 1.0f;
             
-            /*float newAlpha = Mathf.Lerp(currentColor.a, targetAlpha, Time.deltaTime * (targetAlpha / 10));
+            /*float newAlpha = Mathf.Lerp(backgroundColor.a, targetAlpha, Time.deltaTime * (targetAlpha / 10));
             Debug.Log(newAlpha);
             backimage.color = new Color(currentColor.r, currentColor.g, currentColor.b, newAlpha);*/
         }
+        else
+        {
+            alpha = Mathf.Lerp(alpha,0,Time.deltaTime * fadeBackgroundSpeed);
+            backimage.color = new Color(backgroundColor.r, backgroundColor.g, backgroundColor.b, alpha);
+        }
     }
 
-    private IEnumerator FadeAlphaCoroutine(float targetAlpha, float duration)
+    private IEnumerator wait()
+    {
+        yield return new WaitForSeconds(1.5f);
+        //アニメーションが実行されてから時間を空けてカメラをズーム
+        virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, zoomFOV, Time.deltaTime * zoomSpeed);
+        yield return new WaitForSeconds(4f);
+        //現在のシーンを再読み込み
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+    }
+
+    /*private IEnumerator FadeAlphaCoroutine(float targetAlpha, float duration)
     {
         Color currentColor = backimage.color;
         float startAlpha = currentColor.a;
@@ -192,7 +229,7 @@ public class EnemyController : MonoBehaviour
         }
 
         backimage.color = new Color(currentColor.r, currentColor.g, currentColor.b, targetAlpha);
-    }
+    }*/
     void OutKillMode(Collider other){
 
         agent.speed = 3.5f;
