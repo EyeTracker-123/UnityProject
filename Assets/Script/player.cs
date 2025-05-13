@@ -114,7 +114,7 @@ public class player : MonoBehaviour
         horizontal = (cam_right * _velocity.x + cam_forward * _velocity.z) * ms;
         //rb.MovePosition((cam_right * _velocity.x + cam_forward * _velocity.z));
         //gameObject.transform.localPosition += (cam_right * _velocity.x + cam_forward * _velocity.z) * ms;
-        rb.velocity = horizontal; 
+        //rb.velocity = horizontal; 
 
         //else rb.velocity = new Vector3(horizontal.x , rb.velocity.y ,horizontal.z); 
         //rb.MovePosition(horizontal);
@@ -123,8 +123,8 @@ public class player : MonoBehaviour
         // _came.y = Mathf.Clamp(_came.y, -90, 90);
 
         cam.transform.localRotation = Quaternion.Euler(_came);
-        gameObject.transform.localRotation = Quaternion.Euler(0,_came.y,0);
-
+        //gameObject.transform.localRotation = Quaternion.Euler(0,_came.y,0);
+        rb.MovePosition(gameObject.transform.position + horizontal);
        // target.Rotate(Vector3.up * camera_x);
 
 //        Debug.Log(ii);
