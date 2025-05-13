@@ -111,11 +111,14 @@ public class player : MonoBehaviour
         cam_forward = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z).normalized;
         cam_right = new Vector3(cam.transform.right.x, 0, cam.transform.right.z).normalized;
 
-        horizontal += (cam_right * _velocity.x + cam_forward * _velocity.z) * ms;
-        rb.velocity = new Vector3(horizontal.x , rb.velocity.y ,horizontal.z); 
+        horizontal = (cam_right * _velocity.x + cam_forward * _velocity.z) * ms;
+        //rb.MovePosition((cam_right * _velocity.x + cam_forward * _velocity.z));
         //gameObject.transform.localPosition += (cam_right * _velocity.x + cam_forward * _velocity.z) * ms;
+        rb.velocity = horizontal; 
+
+        //else rb.velocity = new Vector3(horizontal.x , rb.velocity.y ,horizontal.z); 
         //rb.MovePosition(horizontal);
-        Debug.Log(rb.velocity.y);
+        //Debug.Log(rb.velocity.y);
         //_came.x = Mathf.Clamp(_came.x, -90, 90);
         // _came.y = Mathf.Clamp(_came.y, -90, 90);
 
