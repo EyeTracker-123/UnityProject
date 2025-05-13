@@ -1,3 +1,7 @@
+
+## Map
+![eye tracker map](https://github.com/user-attachments/assets/15fe0140-afbc-4005-84e9-dd404bd92ff5)
+
 # Oz-branches の説明書
 
 ## プレイヤー操作一覧
@@ -25,6 +29,5 @@
 \*ドアに同じくオブジェクトの名前を「key」+「A~Gまでの大文字アルファベット」にする必要がある  
  例）keyA
 *** 
-
 
 
